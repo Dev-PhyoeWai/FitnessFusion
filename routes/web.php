@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubscriptionTypeController;
 use App\Http\Controllers\WeightTypeController;
+use App\Http\Controllers\WorkoutController;
+use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,5 +43,7 @@ Route::resource('weight-types', WeightTypeController::class);
 // Api
 Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
+
+Route::resource('workout',WorkoutController::class);
 
 require __DIR__.'/auth.php';
