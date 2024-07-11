@@ -13,6 +13,8 @@ class LoginController extends Controller
 {
     public function store(StoreUserRequest $request)
     {
+
+
         if ($request->validated()) {
 
             $user=User::create([
