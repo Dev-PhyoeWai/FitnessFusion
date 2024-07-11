@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //})->middleware('auth:sanctum');
 
-Route::post('login', [LoginController::class, 'auth']);
-Route::post('register', [LoginController::class, 'store']);
+Route::post('user/login', [LoginController::class, 'auth']);
+Route::post('user/register', [LoginController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', function(Request $request) {

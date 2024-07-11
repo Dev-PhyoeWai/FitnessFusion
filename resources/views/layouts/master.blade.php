@@ -451,14 +451,14 @@
                                     User
                                 </a>
                                 <a
-                                    href="auth/register.html"
+                                    href="{{route('roles.index')}}"
                                     role="menuitem"
                                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                                 >
                                     Role
                                 </a>
                                 <a
-                                    href="auth/register.html"
+                                    href="{{route('permissions.index')}}"
                                     role="menuitem"
                                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                                 >
@@ -627,7 +627,7 @@
                             href="{{route('dashboard')}}"
                             class="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light"
                         >
-                            <img style="width: 65px; height: 45px;" src="{{asset('build/images/logo1.png')}}" alt="logo" />
+                            <img style="width: 65px; height: 45px;" src="{{asset('build/images/Fitnessfu.png')}}" alt="logo" />
                         </a>
 
                         <!-- Mobile sub menu button -->
