@@ -1,8 +1,19 @@
 @extends('layouts.master')
-
+@section('title','Subscription Create')
 @section('content')
+
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Create Subscription Type</h1>
+        <div class="card-header border-b border-gray-200 mb-4">
+            <h1 class="text-2xl font-bold mb-4">Create Subscription Type</h1>
+
+                <a href="{{ url('subscription-types') }}">
+                    <button class="bg-red-500 text-black py-1 px-2 rounded-md hover:bg-gray-700
+                                 transition duration-300">
+                        Back
+                    </button>
+                </a>
+        </div>
+
         <form action="{{ route('subscription-types.store') }}" method="POST">
             @csrf
             <div class="mb-4">

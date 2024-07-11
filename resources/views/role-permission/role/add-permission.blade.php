@@ -4,6 +4,12 @@
     <div class="container mx-auto">
         <div class="flex flex-wrap">
             <div class="w-full">
+                @if(session('status'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                         role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div class="card mt-4 mb-4 p-4 shadow-lg rounded-lg">
                     <div class="card-header border-b border-gray-200 mb-4">
                         <h4 class="text-lg font-semibold flex justify-between items-center">
@@ -28,9 +34,9 @@
                                     @foreach($permissions as $permission)
                                         <div class="w-full md:w-1/4">
                                             <label>
-
                                                 <input type="checkbox" name="permission[]"
-                                                       id="permission_name" value="{{$permission->id}}"
+                                                       id="permission_name" value="{{$permission->name}}"
+                                                       {{in_array($permission->id,$rolePermissions)?'checked':''}}
                                                 />
                                                 {{$permission->name}}
                                             </label>

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->integer('height')->nullable();
             $table->integer('weight')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('BMI')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
