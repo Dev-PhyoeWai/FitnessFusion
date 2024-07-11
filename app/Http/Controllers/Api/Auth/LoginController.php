@@ -2,31 +2,69 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Api\ApiBaseController;
-use App\Http\Controllers\Traits\ApiResponse;
-use App\Http\Resources\LoginResource;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthUserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class LoginController extends ApiBaseController
+class LoginController extends Controller
 {
-    use ApiResponse; // trait
-
-    public function login(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        $credentials = $request->only('email', 'password');
+        if ($request->validated()) {
 
-        if(Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $user->token = $user->createToken('test_testing')->plainTextToken;
+            $user=User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-            return $this->success(200, new LoginResource($user), 'Login Success');
-        } else {
-            return $this->error(500, 'Login Failed');
+            if (!$user ) {
+
+                return response()->json([
+                    'error' => 'These credentials do not match any of our records.'
+                ]);
+            } else {
+
+                return response()->json([
+                    'user' => $user,
+                    'message' => 'Logged in successfully.',
+                    'currentToken' => $user->createToken('new_user')->plainTextToken
+                ]);
+            }
         }
+    }
+
+    public function auth(AuthUserRequest $request)
+    {
+        if ($request->validated()) {
+
+            $user = User::whereEmail($request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+
+                return response()->json([
+                    'error' => 'These credentials do not match any of our records.'
+                ]);
+            } else {
+
+                return response()->json([
+                    'user' => $user,
+                    'message' => 'Logged in successfully.',
+                    'currentToken' => $user->createToken('new_user')->plainTextToken
+                ]);
+            }
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Logged out successfully.'
+        ]);
     }
 }
