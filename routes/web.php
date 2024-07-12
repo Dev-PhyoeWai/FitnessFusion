@@ -51,6 +51,7 @@ Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
 
 
+
 Route::resource('workout_plans', WorkoutPlanController::class);
 Route::resource('meal_plans', MealPlanController::class);
 
