@@ -9,7 +9,13 @@
         rel="stylesheet"
     />
     <link rel="stylesheet" href="{{asset('build/css/tailwind.css')}}" />
-{{--    <link rel="stylesheet" href="{{asset('build/css/bootstrap.min.css')}}" />--}}
+    <link rel="stylesheet" href="{{asset('build/css/datatable.css')}}" />
+
+    <!--Regular Datatables CSS-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
 </head>
@@ -85,333 +91,11 @@
                             </div>
                         </div>
 
-                        <!-- Components links -->
-                        <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                            <a
-                                href="#"
-                                @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
-                                role="button"
-                                aria-haspopup="true"
-                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                            >
-                      <span aria-hidden="true">
-                        <svg
-                            class="w-5 h-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                          />
-                        </svg>
-                      </span>
-                                <span class="ml-2 text-sm"> Categories </span>
-                                <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Category
-                                </a>
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Sub Category
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Brands links -->
-                        <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                            <a
-                                href="#"
-                                @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
-                                role="button"
-                                aria-haspopup="true"
-                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                            >
-                      <span aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 3l4 1.5v12l6-2.5l-2-1l-1-4l7 2.5V16L9 21l-4-2z"/>
-                        </svg>
-                      </span>
-                                <span class="ml-2 text-sm"> Brands </span>
-                                <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Example 1
-                                </a>
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Example 2
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Products links -->
-                        <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                            <a
-                                href="#"
-                                @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
-                                role="button"
-                                aria-haspopup="true"
-                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                            >
-                      <span aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 1024 1024">
-                            <path fill="currentColor" fill-rule="evenodd" d="M464 144c8.837 0 16 7.163 16 16v304c0 8.836-7.163 16-16 16H160c-8.837 0-16-7.164-16-16V160c0-8.837 7.163-16 16-16zm-52 68H212v200h200zm493.333 87.686c6.248 6.248 6.248 16.379 0 22.627l-181.02 181.02c-6.248 6.248-16.378 6.248-22.627 0l-181.019-181.02c-6.248-6.248-6.248-16.379 0-22.627l181.02-181.02c6.248-6.248 16.378-6.248 22.627 0zm-84.853 11.313L713 203.52L605.52 311L713 418.48zM464 544c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H160c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H212v200h200zm452-68c8.837 0 16 7.164 16 16v304c0 8.837-7.163 16-16 16H560c-8.837 0-16-7.163-16-16V560c0-8.836 7.163-16 16-16zm-52 68H612v200h200z"/>
-                        </svg>
-                      </span>
-                                <span class="ml-2 text-sm"> Products </span>
-                                <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Products 1
-                                </a>
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Product 2
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Shipping links -->
-                        <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                            <a
-                                href="#"
-                                @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
-                                role="button"
-                                aria-haspopup="true"
-                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                            >
-                      <span aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0-4 0m10 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/>
-                        <path d="M5 17H3v-4M2 5h11v12m-4 0h6m4 0h2v-6h-8m0-5h5l3 5M3 9h4"/></g>
-                       </svg>
-                      </span>
-                                <span class="ml-2 text-sm"> Shipping </span>
-                                <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Example 1
-                                </a>
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Example 2
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Order links -->
-                        <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                            <a
-                                href="#"
-                                @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
-                                role="button"
-                                aria-haspopup="true"
-                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                            >
-                      <span aria-hidden="true">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
-                           <path fill="currentColor" d="m17.371 19.827l2.84-2.796l-.626-.627l-2.214 2.183l-.955-.975l-.627.632zM6.77 8.731h10.462v-1H6.769zM18 22.116q-1.671 0-2.835-1.165Q14 19.787 14 18.116t1.165-2.836T18 14.116t2.836 1.164T22 18.116q0 1.67-1.164 2.835Q19.67 22.116 18 22.116M4 20.769V5.616q0-.672.472-1.144T5.616 4h12.769q.67 0 1.143.472q.472.472.472 1.144v5.944q-.244-.09-.484-.154q-.241-.064-.516-.1v-5.69q0-.231-.192-.424T18.384 5H5.616q-.231 0-.424.192T5 5.616V19.05h6.344q.068.41.176.802q.109.392.303.748l-.034.034l-1.135-.826l-1.346.961l-1.346-.961l-1.346.961l-1.347-.961zm2.77-4.5h4.709q.056-.275.138-.515t.192-.485H6.77zm0-3.769h7.31q.49-.387 1.05-.645q.56-.259 1.197-.355H6.769zM5 19.05V5z"/>
-                       </svg>
-                      </span>
-                                <span class="ml-2 text-sm"> Orders </span>
-                                <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Example 1
-                                </a>
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Example 2
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Discounts links -->
-                        <div x-data="{ isActive: false, open: false }">
-                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
-                            <a
-                                href="#"
-                                @click="$event.preventDefault(); open = !open"
-                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
-                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
-                                role="button"
-                                aria-haspopup="true"
-                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                            >
-                      <span aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.3em" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M7 18c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m10 0c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m-9.8-3.2c0 .1.1.2.2.2H19v2H7c-1.1 0-2-.9-2-2c0-.4.1-.7.2-1l1.3-2.4L3 4H1V2h3.3l4.3 9h7l3.9-7l1.7 1l-3.9 7c-.3.6-1 1-1.7 1H8.1l-.9 1.6zM9.4 1c.8 0 1.4.6 1.4 1.4s-.6 1.4-1.4 1.4S8 3.2 8 2.4S8.7 1 9.4 1m5.2 8c-.8 0-1.4-.6-1.4-1.4s.6-1.4 1.4-1.4s1.4.6 1.4 1.4S15.3 9 14.6 9M9.2 9L8 7.8L14.8 1L16 2.2z"/>
-                        </svg>
-                      </span>
-                                <span class="ml-2 text-sm"> Discount </span>
-                                <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                            </a>
-                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Orders 1
-                                </a>
-                                <a
-                                    href="#"
-                                    role="menuitem"
-                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                                >
-                                    Order 2
-                                </a>
-                            </div>
-                        </div>
 
                         <!-- Authentication links -->
                         <div x-data="{ isActive: false, open: false}">
                             <!-- active & hover classes 'bg-primary-100 dark:bg-primary' -->
-                        <a
+                            <a
                                 href="#"
                                 @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
@@ -439,7 +123,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </span>
-                    </a>
+                            </a>
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
@@ -466,6 +150,115 @@
                                 </a>
                             </div>
                         </div>
+
+                        <!-- Components links -->
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a
+                                href="#"
+                                @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
+                                role="button"
+                                aria-haspopup="true"
+                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                            >
+                      <span aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#555" d="M6 19h5v4l-2.5-1.5L6 23zM20 1h-8v22l2.5-1.5L17 23v-2h3a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2m-6 4h2v2h-2Zm0 5h2v2h-2Zm0 5h2v2h-2ZM4 1a2.006 2.006 0 0 0-2 2v16a2.006 2.006 0 0 0 2 2V3h7V1Z"/>
+                            <path fill="#555" d="M6 5h2v2H6zm0 5h2v2H6zm0 5h2v2H6z"/>
+                        </svg>
+                      </span>
+                                <span class="ml-2 text-sm"> Subscription </span>
+                                <span aria-hidden="true" class="ml-auto">
+                        <!-- active class 'rotate-180' -->
+                        <svg
+                            class="w-4 h-4 transition-transform transform"
+                            :class="{ 'rotate-180': open }"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                <a
+                                    href="{{route('subscription-types.index')}}"
+                                    role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                                >
+                                    Subscription Type
+                                </a>
+                                <a
+                                    href="{{route('weight-types.index')}}"
+                                    role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                                >
+                                    Weight Type
+                                </a>
+                                <a
+                                    href="{{route('sub-weights.index')}}"
+                                    role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                                >
+                                    Subscription Weight
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Brands links -->
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a
+                                href=""
+                                @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
+                                role="button"
+                                aria-haspopup="true"
+                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                            >
+                      <span aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.7em" viewBox="0 0 24 24">
+                            <path fill="#555" d="m5.44 7.96l.52-.53c.58-.58 1.54-.58 2.14.04l.02.03c.49.5 1.14.74 1.85.81c.97.09 1.91.61 2.53 1.55c.68 1.08.67 2.52-.04 3.59a3.322 3.322 0 0 1-5.18.55c-.56-.55-.88-1.26-.96-2c-.08-.73-.37-1.42-.88-1.93c-.58-.57-.58-1.53 0-2.11M9.64 16c-1.17 0-2.26-.45-3.07-1.28c-.7-.72-1.14-1.62-1.25-2.6c-.03-.3-.12-.69-.36-1.05C4.36 11.9 4 12.9 4 14c0 1.64.8 3.09 2.03 4H19v-1c0-3.6-2.39-6.65-5.66-7.65c.89 1.4.87 3.27-.04 4.65c-.8 1.25-2.18 2-3.66 2m5.14-8.44h1.27c.87 0 1.63.61 1.63 1.7V10h1.25V9c0-1.5-1.33-2.64-2.88-2.64h-1.27c-.83 0-1.54-.82-1.54-1.66s.71-1.46 1.54-1.46V2C13.24 2 12 3.24 12 4.78s1.24 2.78 2.78 2.78M4.5 7.55c.06-.1.14-.2.23-.3l.52-.52c.09-.09.19-.16.29-.23L4.13 5.07c.14-.27.09-.62-.13-.85a.767.767 0 0 0-1.07 0c-.14.14-.21.31-.22.49c-.18.01-.35.08-.49.22c-.29.29-.29.77 0 1.07c.23.22.57.27.85.13zm13.89-3.16c.51-.51.83-1.2.83-1.97h-1.25c0 .83-.7 1.53-1.53 1.53v1.24c1.86 0 3.32 1.52 3.32 3.38V11H21V8.57a4.61 4.61 0 0 0-2.61-4.18M5 21h14c1.11 0 2-.89 2-2H3a2 2 0 0 0 2 2"/>
+                        </svg>
+                        </span>
+                                <span class="ml-2 text-sm"> Meal Plan </span>
+                                <span aria-hidden="true" class="ml-auto">
+                        </span>
+                      </a>
+                        </div>
+
+                        <!-- Products links -->
+                        <div x-data="{ isActive: false, open: false }">
+                            <!-- active classes 'bg-primary-100 dark:bg-primary' -->
+                            <a
+                                href="#"
+                                @click="$event.preventDefault(); open = !open"
+                                class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
+                                :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
+                                role="button"
+                                aria-haspopup="true"
+                                :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                            >
+                      <span aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.5em" viewBox="0 0 48 48"><g fill="none">
+                                <path d="M0 0h48v48H0z"/><path fill="#555" fill-rule="evenodd" d="M9 6a3 3 0 0 0-3 3v30a3 3 0 0 0 3 3h30a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3zm23 10h-3v16h3zm2 3h3v4h1v2h-1v4h-3zM16 32h3V16h-3zm-2-3h-3v-4h-1v-2h1v-4h3zm7-4h6v-2h-6z" clip-rule="evenodd"/>
+                            </g>
+                        </svg>
+                      </span>
+                                <span class="ml-2 text-sm"> Workout </span>
+                                <span aria-hidden="true" class="ml-auto">
+                        <!-- active class 'rotate-180' -->
+
+                      </span>
+                            </a>
+                        </div>
+                        <!-- Discounts links -->
 
                         <!-- Layouts links -->
                         <div x-data="{ isActive: false, open: false}">
@@ -588,9 +381,8 @@
                             class="flex items-center justify-center w-full px-4 py-2 text-sm text-white rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-dark focus:ring-offset-1 focus:ring-offset-white dark:focus:ring-offset-dark"
                         >
                         <span aria-hidden="true">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="1.5em" viewBox="0 0 24 24">
-                              <g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"/><path fill="#ffff" d="M11.879 5.5c-.955.117-1.86.456-2.242.77c-2.228 1.842-3.486 4.277-4.139 6.4a13.8 13.8 0 0 0-.562 2.763c-.034.383-.065.784-.007 1.167c.383.434.925.749 1.428 1.019c1.051.565 2.63 1.151 4.753 1.387c1.202.134 2.72.21 4.12.098c1.453-.117 2.567-.422 3.145-.885c.974-.779 1.22-1.688 1.131-2.484c-.095-.856-.576-1.58-1.06-1.903c-.835-.556-1.775-.612-2.661-.38c-.912.24-1.661.76-2.015 1.186a1 1 0 0 1-1.477.069c-.55-.55-1.485-.71-2.738.125a1 1 0 0 1-1.536-.636c-.286-1.434-.137-2.958.127-4.215c.266-1.259.666-2.342.96-2.928a1 1 0 0 1 1.788 0c.203.404.574.766 1.006.918c.335-.211.626-.506.862-.821c.434-.578.579-1.125.386-1.608c-.392-.14-.867-.091-1.27-.042Zm1.483-1.964c.484.093 1.191.335 1.532 1.017c.747 1.494.13 2.914-.532 3.797c-.432.576-.988 1.118-1.635 1.45c-.135.07-.41.2-.727.2c-.591 0-1.17-.269-1.645-.605c-.09.306-.177.642-.252.998a10.6 10.6 0 0 0-.24 2.078c1.053-.34 2.13-.304 3.058.22a6.5 6.5 0 0 1 2.357-1.173c1.3-.341 2.86-.294 4.277.65c1.015.677 1.784 1.952 1.939 3.347c.162 1.454-.343 3.044-1.87 4.266c-1.078.862-2.721 1.195-4.233 1.316c-1.565.126-3.218.04-4.501-.103c-2.378-.264-4.204-.928-5.48-1.613c-.837-.45-1.982-1.072-2.345-2.025c-.245-.646-.181-1.43-.121-2.102c.08-.881.276-1.981.643-3.173c.732-2.379 2.165-5.194 4.776-7.352c.803-.664 2.147-1.076 3.272-1.214c.58-.071 1.19-.081 1.727.021"/>
-                              </g>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.4em" viewBox="0 0 512 512">
+                              <path fill="#ffff" d="M170.322 349.808c-2.4-15.66-9-28.38-25.02-34.531c-6.27-2.4-11.7-6.78-17.88-9.54c-7.02-3.15-14.16-6.15-21.57-8.1c-5.61-1.5-10.83 1.02-14.16 5.94c-3.15 4.62-.87 8.97 1.77 12.84c2.97 4.35 6.27 8.49 9.6 12.57c5.52 6.78 11.37 13.29 16.74 20.161c5.13 6.57 9.51 13.86 8.76 22.56c-1.65 19.08-10.29 34.891-24.21 47.76c-1.53 1.38-4.23 2.37-6.21 2.19c-8.88-.96-16.95-4.32-23.46-10.53c-7.47-7.11-6.33-15.48 2.61-20.67c2.13-1.23 4.35-2.37 6.3-3.87c5.46-4.11 7.29-11.13 4.32-17.22c-1.41-2.94-3-6.12-5.34-8.25c-11.43-10.41-22.651-21.151-34.891-30.63C18.01 307.447 2.771 276.968.43 240.067c-2.64-40.981 6.87-79.231 28.5-114.242c8.19-13.29 17.73-25.951 32.37-32.52c9.96-4.47 20.88-6.99 31.531-9.78c29.311-7.71 58.89-13.5 89.401-8.34c26.28 4.41 45.511 17.94 54.331 43.77c5.79 16.89 7.17 34.35 5.37 52.231c-3.54 35.131-29.49 66.541-63.331 75.841c-14.67 4.02-22.68 1.77-31.5-10.44c-6.33-8.79-11.58-18.36-17.25-27.631c-.84-1.38-1.44-2.97-2.16-4.44c-.69-1.47-1.44-2.88-2.16-4.35c2.13 15.24 5.67 29.911 13.98 42.99c4.5 7.11 10.5 12.36 19.29 13.14c32.34 2.91 59.641-7.71 79.021-33.721c21.69-29.101 26.461-62.581 20.19-97.831c-1.23-6.96-3.3-13.77-4.77-20.7c-.99-4.47.78-7.77 5.19-9.33c2.04-.69 4.14-1.26 6.18-1.68c26.461-5.7 53.221-7.59 80.191-4.86c30.601 3.06 59.551 11.46 85.441 28.471c40.531 26.67 65.641 64.621 79.291 110.522c1.98 6.66 2.28 13.95 2.46 20.971c.12 4.68-2.88 5.91-6.45 2.97c-3.93-3.21-7.53-6.87-10.92-10.65c-3.15-3.57-5.67-7.65-8.73-11.4c-2.37-2.94-4.44-2.49-5.58 1.17c-.72 2.22-1.35 4.41-1.98 6.63c-7.08 25.26-18.24 48.3-36.33 67.711c-2.52 2.73-4.77 6.78-5.07 10.38c-.78 9.96-1.35 20.13-.39 30.06c1.98 21.331 5.07 42.57 7.47 63.871c1.35 12.03-2.52 19.11-13.83 23.281c-7.95 2.91-16.47 5.04-24.87 5.64c-13.38.93-26.88.27-40.32.27c-.36-15 .93-29.731-13.17-37.771c2.73-11.13 5.88-21.69 7.77-32.49c1.56-8.97.24-17.79-6.06-25.14c-5.91-6.93-13.32-8.82-20.101-4.86c-20.43 11.91-41.671 11.97-63.301 4.17c-9.93-3.6-16.86-1.56-22.351 7.5c-5.91 9.75-8.4 20.7-7.74 31.771c.84 13.95 3.27 27.75 5.13 41.64c1.02 7.77.15 9.78-7.56 11.76c-17.13 4.35-34.56 4.83-52.081 3.42c-.93-.09-1.86-.48-2.46-.63c-.87-14.55.66-29.671-16.68-37.411c7.68-16.29 6.63-33.18 3.99-50.07l-.06-.15zm-103.561-57.09c2.55-2.4 4.59-6.15 5.31-9.6c1.8-8.64-4.68-20.22-12.18-23.43c-3.99-1.74-7.47-1.11-10.29 2.07c-6.87 7.77-13.65 15.63-20.401 23.521c-1.14 1.35-2.16 2.94-2.97 4.53c-2.7 5.19-1.11 8.97 4.65 10.38c3.48.87 7.08 1.05 10.65 1.56c9.3-.9 18.3-2.46 25.23-9zm.78-86.371c-.03-6.18-5.19-11.34-11.28-11.37c-6.27-.03-11.67 5.58-11.46 11.76c.27 6.21 5.43 11.19 11.61 11.07c6.24-.09 11.22-5.19 11.16-11.43z"/>
                           </svg>
                     </span>
                             <span>TPP-PHP</span>
@@ -1321,7 +1113,7 @@
                     <div>LARAVEL-TEAM &copy; 2024</div>
                     <div>
                         Made by
-                        <a href="{{route('dashboard')}}" target="_blank" class="text-blue-500 hover:underline"
+                        <a href="https://github.com/taylorotwell" target="_blank" class="text-blue-500 hover:underline"
                         >TPP-LARAVEL-TEAM</a
                         >
                     </div>
@@ -1949,7 +1741,7 @@
         const updateBarChart = (on) => {
             const data = {
                 data: randomData(),
-                backgroundColor: '#F13223',
+                backgroundColor: '#015e98',
             }
             if (on) {
                 barChart.data.datasets.push(data)
@@ -1962,7 +1754,7 @@
 
         const updateDoughnutChart = (on) => {
             const data = random()
-            const color = '#F13223'
+            const color = '#015e98'
             if (on) {
                 doughnutChart.data.labels.unshift('Seb')
                 doughnutChart.data.datasets[0].data.unshift(data)

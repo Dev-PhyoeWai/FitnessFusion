@@ -49,5 +49,4 @@ Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
 
 
-
 require __DIR__.'/auth.php';
