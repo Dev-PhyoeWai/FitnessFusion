@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Subscription extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['user_id', 'name', 'month', 'weight_type', 'image'];
+
+    public function workoutPlans()
+    {
+        return $this->hasMany(WorkoutPlan::class);
+    }
+    public function mealPlans()
+    {
+        return $this->hasMany(MealPlan::class);
+    }
+}
+
