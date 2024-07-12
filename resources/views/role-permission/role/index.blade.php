@@ -75,4 +75,119 @@
             </div>
         </div>
     </div>
+
+{{--    data table --}}
+    <div class="container mx-auto mt-10">
+        <h2 class="text-2xl font-semibold mb-6">Fitness Fusion Data Table</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead>
+                <tr class="w-full bg-gray-200 text-left">
+                    <th class="py-2 px-4 border-b">ID</th>
+                    <th class="py-2 px-4 border-b">Name</th>
+                    <th class="py-2 px-4 border-b">Workout Plan</th>
+                    <th class="py-2 px-4 border-b">Meal Plan</th>
+                    <th class="py-2 px-4 border-b">Progress</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="bg-gray-100">
+                    <td class="py-2 px-4 border-b">1</td>
+                    <td class="py-2 px-4 border-b">John Doe</td>
+                    <td class="py-2 px-4 border-b">Full Body Workout</td>
+                    <td class="py-2 px-4 border-b">High Protein Diet</td>
+                    <td class="py-2 px-4 border-b">75%</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="py-2 px-4 border-b">2</td>
+                    <td class="py-2 px-4 border-b">Jane Smith</td>
+                    <td class="py-2 px-4 border-b">Cardio Blast</td>
+                    <td class="py-2 px-4 border-b">Keto Diet</td>
+                    <td class="py-2 px-4 border-b">60%</td>
+                </tr>
+                <tr class="bg-gray-100">
+                    <td class="py-2 px-4 border-b">3</td>
+                    <td class="py-2 px-4 border-b">Alex Johnson</td>
+                    <td class="py-2 px-4 border-b">Strength Training</td>
+                    <td class="py-2 px-4 border-b">Balanced Diet</td>
+                    <td class="py-2 px-4 border-b">80%</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="py-2 px-4 border-b">4</td>
+                    <td class="py-2 px-4 border-b">Emily Davis</td>
+                    <td class="py-2 px-4 border-b">Yoga and Flexibility</td>
+                    <td class="py-2 px-4 border-b">Vegan Diet</td>
+                    <td class="py-2 px-4 border-b">90%</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{{--    data table      --}}
+<body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+    <!--Container-->
+    <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2">
+        <!--Title-->
+        <h1 class="flex items-center font-sans font-bold break-normal text-indigo-500 px-2 py-8 text-xl md:text-2xl">
+            Responsive <a class="underline mx-2" href="https://datatables.net/">DataTables.net</a> Table
+        </h1>
+        <!--Card-->
+        <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+
+            <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                <thead>
+                <tr>
+                    <th data-priority="1">Name</th>
+                    <th data-priority="2">Position</th>
+                    <th data-priority="3">Office</th>
+                    <th data-priority="4">Age</th>
+                    <th data-priority="5">Start date</th>
+                    <th data-priority="6">Salary</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+
+                <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
+
+                <tr>
+                    <td>Donna Snider</td>
+                    <td>Customer Support</td>
+                    <td>New York</td>
+                    <td>27</td>
+                    <td>2011/01/25</td>
+                    <td>$112,000</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <!--/Card-->
+    </div>
+    <!--/container-->
+ <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!--Datatables -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var table = $('#example').DataTable({
+                responsive: true
+            })
+                .columns.adjust()
+                .responsive.recalc();
+        });
+    </script>
+</body>
 @endsection

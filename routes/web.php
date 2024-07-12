@@ -47,6 +47,4 @@ Route::resource('sub-weights', SubWeightController::class);
 Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
 
-Route::resource('workout',WorkoutController::class);
-
 require __DIR__.'/auth.php';
