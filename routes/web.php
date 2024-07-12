@@ -7,6 +7,7 @@ use App\Http\Controllers\SubscriptionTypeController;
 use App\Http\Controllers\SubWeightController;
 use App\Http\Controllers\WeightTypeController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\WorkoutPlanController;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;
 
@@ -46,5 +47,6 @@ Route::resource('sub-weights', SubWeightController::class);
 // Api
 Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
+
 
 require __DIR__.'/auth.php';
