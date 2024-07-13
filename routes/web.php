@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubscriptionTypeController;
 use App\Http\Controllers\SubWeightController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeightTypeController;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\WorkoutPlanController;
@@ -51,10 +52,8 @@ Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
 
 
-
-Route::resource('workout_plans', WorkoutPlanController::class);
-Route::resource('meal_plans', MealPlanController::class);
-
+Route::resource('users', UserController::class);
 Route::resource('subscriptions', SubscriptionController::class);
+Route::resource('workout_plans', WorkoutPlanController::class);
 
 require __DIR__.'/auth.php';

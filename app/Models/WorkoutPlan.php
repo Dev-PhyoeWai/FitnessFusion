@@ -9,11 +9,13 @@ class WorkoutPlan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['subscription_id', 'name', 'body_part', 'type', 'set', 'raps', 'image', 'gender'];
+    protected $fillable = [
+        'name', 'body_part', 'type', 'set',
+        'raps', 'image', 'gender', 'subscription_id'
+    ];
 
     public function subscription()
     {
         return $this->belongsTo(Subscription::class);
     }
 }
-
