@@ -9,15 +9,17 @@ class Subscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'month', 'weight_type', 'image'];
+    protected $fillable = [
+        'name', 'month', 'weight_type', 'image'
+    ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 
     public function workoutPlans()
     {
         return $this->hasMany(WorkoutPlan::class);
     }
-    public function mealPlans()
-    {
-        return $this->hasMany(MealPlan::class);
-    }
 }
-

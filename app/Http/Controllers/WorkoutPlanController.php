@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
 use App\Models\WorkoutPlan;
 use Illuminate\Http\Request;
 
@@ -14,28 +16,13 @@ class WorkoutPlanController extends Controller
 
     public function create()
     {
-        $subscriptions = \App\Models\Subscription::all();
+        $subscriptions = Subscription::all(); // Fetch all subscriptions
         return view('workout_plans.create', compact('subscriptions'));
     }
 
-
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'subscription_id' => 'required',
-            'name' => 'required',
-            'body_part' => 'required',
-            'type' => 'required',
-            'set' => 'required',
-            'raps' => 'required',
-            'image' => 'required|image',
-            'gender' => 'required',
-        ]);
-
-        $data['image'] = $request->file('image')->store('public/uploads');
-
-        WorkoutPlan::create($data);
-
+        WorkoutPlan::create($request->all());
         return redirect()->route('workout_plans.index');
     }
 
@@ -44,7 +31,6 @@ class WorkoutPlanController extends Controller
         return view('workout_plans.show', compact('workoutPlan'));
     }
 
-
     public function edit(WorkoutPlan $workoutPlan)
     {
         return view('workout_plans.edit', compact('workoutPlan'));
@@ -52,25 +38,7 @@ class WorkoutPlanController extends Controller
 
     public function update(Request $request, WorkoutPlan $workoutPlan)
     {
-        $data = $request->validate([
-            'subscription_id' => 'required',
-            'name' => 'required',
-            'body_part' => 'required',
-            'type' => 'required',
-            'set' => 'required',
-            'raps' => 'required',
-            'image' => 'nullable|image',
-            'gender' => 'required',
-        ]);
-
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('public/uploads');
-        } else {
-            unset($data['image']);
-        }
-
-        $workoutPlan->update($data);
-
+        $workoutPlan->update($request->all());
         return redirect()->route('workout_plans.index');
     }
 

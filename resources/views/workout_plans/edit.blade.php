@@ -1,54 +1,52 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-4">Edit Workout Plan</h1>
-        <form action="{{ route('workout_plans.update', $workoutPlan->id) }}" method="POST" enctype="multipart/form-data">
+    <div class="bg-white p-4 rounded-lg shadow">
+        <h1 class="text-2xl font-bold mb-4">Edit Workout Plan</h1>
+        <form action="{{ route('workout_plans.update', $workoutPlan) }}" method="POST">
             @csrf
             @method('PUT')
-
             <div class="mb-4">
-                <label for="subscription_id" class="block text-gray-700 font-bold mb-2">Subscription ID:</label>
-                <input type="text" id="subscription_id" name="subscription_id" value="{{ $workoutPlan->subscription_id }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Name</label>
+                <input type="text" name="name" value="{{ $workoutPlan->name }}" class="w-full border-gray-300 rounded" required>
             </div>
-
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
-                <input type="text" id="name" name="name" value="{{ $workoutPlan->name }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Body Part</label>
+                <input type="text" name="body_part" value="{{ $workoutPlan->body_part }}" class="w-full border-gray-300 rounded" required>
             </div>
-
             <div class="mb-4">
-                <label for="body_part" class="block text-gray-700 font-bold mb-2">Body Part:</label>
-                <input type="text" id="body_part" name="body_part" value="{{ $workoutPlan->body_part }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Type</label>
+                <input type="text" name="type" value="{{ $workoutPlan->type }}" class="w-full border-gray-300 rounded" required>
             </div>
-
             <div class="mb-4">
-                <label for="type" class="block text-gray-700 font-bold mb-2">Type:</label>
-                <input type="text" id="type" name="type" value="{{ $workoutPlan->type }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Set</label>
+                <input type="number" name="set" value="{{ $workoutPlan->set }}" class="w-full border-gray-300 rounded" required>
             </div>
-
             <div class="mb-4">
-                <label for="set" class="block text-gray-700 font-bold mb-2">Set:</label>
-                <input type="number" id="set" name="set" value="{{ $workoutPlan->set }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Raps</label>
+                <input type="number" name="raps" value="{{ $workoutPlan->raps }}" class="w-full border-gray-300 rounded" required>
             </div>
-
             <div class="mb-4">
-                <label for="raps" class="block text-gray-700 font-bold mb-2">Raps:</label>
-                <input type="number" id="raps" name="raps" value="{{ $workoutPlan->raps }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Image</label>
+                <input type="file" name="image" class="w-full border-gray-300 rounded">
             </div>
-
             <div class="mb-4">
-                <label for="image" class="block text-gray-700 font-bold mb-2">Image:</label>
-                <input type="file" id="image" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Gender</label>
+                <select name="gender" class="w-full border-gray-300 rounded" required>
+                    <option value="Male" {{ $workoutPlan->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                    <option value="Female" {{ $workoutPlan->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                    <option value="Other" {{ $workoutPlan->gender == 'Other' ? 'selected' : '' }}>Other</option>
+                </select>
             </div>
-
             <div class="mb-4">
-                <label for="gender" class="block text-gray-700 font-bold mb-2">Gender:</label>
-                <input type="text" id="gender" name="gender" value="{{ $workoutPlan->gender }}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label class="block text-gray-700">Subscription</label>
+                <select name="subscription_id" class="w-full border-gray-300 rounded" required>
+                    @foreach($subscriptions as $subscription)
+                        <option value="{{ $subscription->id }}" {{ $workoutPlan->subscription_id == $subscription->id ? 'selected' : '' }}>{{ $subscription->name }}</option>
+                    @endforeach
+                </select>
             </div>
-
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update</button>
+            <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded">Update Workout Plan</button>
         </form>
     </div>
 @endsection
-

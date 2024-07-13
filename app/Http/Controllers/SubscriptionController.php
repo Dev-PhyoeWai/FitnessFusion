@@ -1,75 +1,175 @@
 <?php
+
+//class SubscriptionController extends Controller
+//{
+////    public function index()
+//    {
+//        $subscriptions = Subscription::all();
+//        return view('subscriptions.index', compact('subscriptions'));
+//    }
+//
+//    public function create()
+//    {
+//        return view('subscriptions.create');
+//    }
+//
+//    public function store(Request $request)
+//    {
+//        Subscription::create($request->all());
+//        return redirect()->route('subscriptions.index');
+//    }
+//
+//    public function show(Subscription $subscription)
+//    {
+//        return view('subscriptions.show', compact('subscription'));
+//    }
+//
+//    public function edit(Subscription $subscription)
+//    {
+//        return view('subscriptions.edit', compact('subscription'));
+//    }
+//
+//    public function update(Request $request, Subscription $subscription)
+//    {
+//        $subscription->update($request->all());
+//        return redirect()->route('subscriptions.index');
+//    }
+//
+//    public function destroy(Subscription $subscription)
+//    {
+//        $subscription->delete();
+//        return redirect()->route('subscriptions.index');
+//    }
+
+
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
-use Illuminate\Http\Request;
+    use App\Models\Subscription;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Validator;
 
 class SubscriptionController extends Controller
 {
+
     public function index()
     {
         $subscriptions = Subscription::all();
-        return view('subscriptions.index', compact('subscriptions'));
-    }
-
-    public function create()
-    {
-        return view('subscriptions.create');
+        return response()->json([
+            'success' => true,
+            'data' => $subscriptions
+        ], 200);
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'user_id' => 'required|exists:users,id',
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'month' => 'required|integer',
             'weight_type' => 'required|string|max:255',
-            'image' => 'nullable|image',
+            'image' => 'nullable|string|max:255',
         ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('public/uploads');
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 400);
         }
 
-        Subscription::create($data);
+        $subscription = Subscription::create($request->all());
 
-        return redirect()->route('subscriptions.index');
+        return response()->json([
+            'success' => true,
+            'data' => $subscription
+        ], 201);
     }
 
-    public function show(Subscription $subscription)
+    public function show($id)
     {
-        return view('subscriptions.show', compact('subscription'));
+        $subscription = Subscription::find($id);
+
+        if (!$subscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Subscription not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $subscription
+        ], 200);
     }
 
-    public function edit(Subscription $subscription)
+    public function update(Request $request, $id)
     {
-        return view('subscriptions.edit', compact('subscription'));
-    }
+        $subscription = Subscription::find($id);
 
-    public function update(Request $request, Subscription $subscription)
-    {
-        $data = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'name' => 'required|string|max:255',
-            'month' => 'required|integer',
-            'weight_type' => 'required|string|max:255',
-            'image' => 'nullable|image',
+        if (!$subscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Subscription not found'
+            ], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'sometimes|required|string|max:255',
+            'month' => 'sometimes|required|integer',
+            'weight_type' => 'sometimes|required|string|max:255',
+            'image' => 'nullable|string|max:255',
         ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('public/uploads');
-        } else {
-            unset($data['image']);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 400);
         }
 
-        $subscription->update($data);
+        $subscription->update($request->all());
 
-        return redirect()->route('subscriptions.index');
+        return response()->json([
+            'success' => true,
+            'data' => $subscription
+        ], 200);
     }
 
-    public function destroy(Subscription $subscription)
+    public function destroy($id)
     {
+        $subscription = Subscription::find($id);
+
+        if (!$subscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Subscription not found'
+            ], 404);
+        }
+
         $subscription->delete();
-        return redirect()->route('subscriptions.index');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Subscription deleted successfully'
+        ], 200);
+    }
+    // get workout plans for a specific subscription
+    public function workoutPlans($id)
+    {
+        $subscription = Subscription::find($id);
+
+        if (!$subscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Subscription not found'
+            ], 404);
+        }
+
+        $workoutPlans = $subscription->workoutPlans;
+
+        return response()->json([
+            'success' => true,
+            'data' => $workoutPlans
+        ], 200);
     }
 }
+

@@ -1,56 +1,51 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container mx-auto px-4">
-        <h1 class="text-2xl font-bold mb-4">Workout Plan Details</h1>
-        <table class="table-auto w-full border-collapse border border-gray-300">
+    <div class="bg-white p-4 rounded-lg shadow">
+        <h1 class="text-2xl font-bold mb-4">{{ $workoutPlan->name }}</h1>
+
+        <table class="table-auto w-full">
             <tbody>
-            <tr class="bg-gray-100">
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Subscription ID</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->subscription_id }}</td>
+            <tr>
+                <td class="border px-4 py-2"><strong>Body Part:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->body_part }}</td>
             </tr>
             <tr>
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Name</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->name }}</td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Body Part</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->body_part }}</td>
+                <td class="border px-4 py-2"><strong>Type:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->type }}</td>
             </tr>
             <tr>
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Type</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->type }}</td>
-            </tr>
-            <tr class="bg-gray-100">
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Set</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->set }}</td>
+                <td class="border px-4 py-2"><strong>Sets:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->sets }}</td>
             </tr>
             <tr>
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Raps</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->raps }}</td>
+                <td class="border px-4 py-2"><strong>Reps:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->reps }}</td>
             </tr>
-            @if($workoutPlan->image)
-                <tr class="bg-gray-100">
-                    <td class="border border-gray-300 px-4 py-2 font-semibold">Image</td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        <img src="{{ Storage::url($workoutPlan->image) }}" alt="Workout Plan Image" class="w-24">
-                    </td>
-                </tr>
-            @endif
             <tr>
-                <td class="border border-gray-300 px-4 py-2 font-semibold">Gender</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $workoutPlan->gender }}</td>
+                <td class="border px-4 py-2"><strong>Gender:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->gender }}</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2"><strong>Image:</strong></td>
+                <td class="border px-4 py-2"><img src="{{ $workoutPlan->image }}" alt="{{ $workoutPlan->name }}"></td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2"><strong>Subscription:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->subscription->name }}</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2" colspan="2">
+                    <a href="{{ route('workout_plans.edit', $workoutPlan) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</a>
+
+                    <form action="{{ route('workout_plans.destroy', $workoutPlan) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded ml-2">Delete</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
-        <div class="mt-4">
-            <a href="{{ route('workout_plans.edit', $workoutPlan->id) }}" class="inline-block bg-blue-500 text-black py-2 px-4 rounded hover:bg-blue-600">Edit</a>
-            <form action="{{ route('workout_plans.destroy', $workoutPlan->id) }}" method="POST" class="inline-block">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="bg-red-500 text-black py-2 px-4 rounded hover:bg-red-600">Delete</button>
-            </form>
-            <a href="{{ route('workout_plans.index') }}" class="inline-block bg-gray-500 text-black py-2 px-4 rounded hover:bg-gray-600">Back to List</a>
-        </div>
     </div>
 @endsection

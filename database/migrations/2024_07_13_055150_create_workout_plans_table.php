@@ -9,14 +9,14 @@ class CreateWorkoutPlansTable extends Migration
     {
         Schema::create('workout_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subscription_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('body_part');
             $table->string('type');
             $table->integer('set');
             $table->integer('raps');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('gender');
+            $table->foreignId('subscription_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
