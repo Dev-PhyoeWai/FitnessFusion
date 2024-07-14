@@ -33,7 +33,9 @@ class WorkoutPlanController extends Controller
 
     public function edit(WorkoutPlan $workoutPlan)
     {
-        return view('workout_plans.edit', compact('workoutPlan'));
+        $subscriptions = Subscription::all();
+        return view('workout_plans.edit', compact('workoutPlan',
+            'subscriptions'));
     }
 
     public function update(Request $request, WorkoutPlan $workoutPlan)
