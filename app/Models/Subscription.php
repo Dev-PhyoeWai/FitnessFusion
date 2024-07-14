@@ -22,4 +22,8 @@ class Subscription extends Model
     {
         return $this->hasMany(WorkoutPlan::class);
     }
+    public function mealPlans()
+    {
+        return $this->hasMany(MealPlan::class);
+    }
 }

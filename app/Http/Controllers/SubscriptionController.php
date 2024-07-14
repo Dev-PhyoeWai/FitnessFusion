@@ -171,5 +171,24 @@ class SubscriptionController extends Controller
             'data' => $workoutPlans
         ], 200);
     }
+    // get meal plans for a specific subscription
+    public function mealPlans($id)
+    {
+        $subscription = Subscription::find($id);
+
+        if (!$subscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Subscription not found'
+            ], 404);
+        }
+
+        $mealPlans = $subscription->mealPlans;
+
+        return response()->json([
+            'success' => true,
+            'data' => $mealPlans
+        ], 200);
+    }
 }
 

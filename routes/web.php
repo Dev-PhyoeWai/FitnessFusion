@@ -55,5 +55,6 @@ Route::apiResource('weight-types', WeightTypeController::class);
 Route::resource('users', UserController::class);
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('workout_plans', WorkoutPlanController::class);
+Route::resource('meal_plans', MealPlanController::class);
 
 require __DIR__.'/auth.php';
