@@ -24,9 +24,9 @@ class User extends Authenticatable
         'subscription_id'
     ];
 
-    public function subscription()
+    public function subscriptions()
     {
-        return $this->belongsTo(Subscription::class);
+        return $this->hasMany(Subscription::class);
     }
 
     /**
