@@ -1,6 +1,11 @@
 <?php
 
+
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\GoalsController;
+
 use App\Http\Controllers\MealPlanController;
+
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -49,6 +54,9 @@ Route::resource('sub-weights', SubWeightController::class);
 // Api
 Route::apiResource('subscription-types', SubscriptionTypeController::class);
 Route::apiResource('weight-types', WeightTypeController::class);
+
+Route::resource('activity',ActivityController::class);
+Route::resource('goal',GoalsController::class);
 
 
 Route::resource('users', UserController::class);
