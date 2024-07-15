@@ -19,14 +19,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'age',
-        'height',
-        'weight',
-        'gender'
+        'name', 'email', 'age', 'height',
+        'weight', 'image', 'BMI', 'password',
+        'subscription_id'
     ];
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
