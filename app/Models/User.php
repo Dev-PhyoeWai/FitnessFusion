@@ -26,7 +26,9 @@ class User extends Authenticatable
 
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->belongsTo(Subscription::class)
+            ->withPivot()
+            ->withTimestamps();
     }
 
     /**
