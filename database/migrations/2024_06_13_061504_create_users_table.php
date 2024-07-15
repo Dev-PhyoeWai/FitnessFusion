@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->float('BMI')->nullable();
             $table->string('password');
-            $table->foreignId('subscription_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
 

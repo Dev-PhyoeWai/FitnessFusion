@@ -103,17 +103,57 @@ class LoginController extends ApiBaseController
         }
     }
 
+//    public function show($id)
+//    {
+//        $users = User::find($id);
+//
+//        if (!$users) {
+//            return $this->error(404, 'Subscription not found.');
+//        }
+//
+//        return $this->success(200, $users, 'Subscription retrieved successfully.');
+//    }
+
     public function show($id)
     {
-        $users = User::find($id);
+        $user = User::with(['subscriptions.workoutPlans', 'subscriptions.mealPlans'])->find($id);
 
-        if (!$users) {
-            return $this->error(404, 'Subscription not found.');
+        if (!$user) {
+            return $this->error(404, 'User not found.');
         }
 
-        return $this->success(200, $users, 'Subscription retrieved successfully.');
-    }
+        $formattedUser = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'subscriptions' => $user->subscriptions->mapWithKeys(function ($subscription) {
+                return [
+                    $subscription->id => [
+                        'workoutPlans' => $subscription->workoutPlans->map(function ($workoutPlans) {
+                            return [
+                                'id' => $workoutPlans->id,
+                                'name' => $workoutPlans->name,
+                            ];
+                        }),
+                        'mealPlans' => $subscription->mealPlans->map(function ($mealPlans) {
+                            return [
+                                'id' => $mealPlans->id,
+                                'name' => $mealPlans->name,
+                            ];
+                        }),
+                    ],
+                ];
+            }),
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at,
+        ];
 
+        return response()->json([
+            'user' => $formattedUser,
+            'message' => 'User retrieved successfully.',
+            'currentToken' => auth()->user() ? auth()->user()->currentAccessToken()->plainTextToken : null,
+        ], 200);
+    }
     public function update(Request $request, $id)
     {
         $users = User::find($id);

@@ -3,8 +3,8 @@
 @section('content')
     <div class="bg-white p-4 rounded-lg shadow">
         <div class="flex justify-between items-center mb-4">
-            <h1 class="text-2xl font-bold">Workout Plans</h1>
-            <a href="{{ route('workout_plans.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Workout Plan</a>
+            <h1 class="text-2xl font-bold">Meal Plans</h1>
+            <a href="{{ route('meal_plans.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Workout Plan</a>
         </div>
         <table class="min-w-full bg-white">
             <thead>
