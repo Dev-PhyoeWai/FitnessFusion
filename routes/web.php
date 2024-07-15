@@ -9,7 +9,6 @@ use App\Http\Controllers\SubscriptionTypeController;
 use App\Http\Controllers\SubWeightController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WeightTypeController;
-use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\WorkoutPlanController;
 use Illuminate\Routing\RouteRegistrar;
 use Illuminate\Support\Facades\Route;

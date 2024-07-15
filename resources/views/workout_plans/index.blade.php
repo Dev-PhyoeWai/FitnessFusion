@@ -13,18 +13,28 @@
                 <th class="py-2">Name</th>
                 <th class="py-2">Body Part</th>
                 <th class="py-2">Type</th>
+                <th class="py-2">Set</th>
+                <th class="py-2">Rap</th>
+                <th class="py-2">Gender</th>
+                <th class="py-2">Image</th>
+                <th class="py-2">Subscription</th>
                 <th class="py-2">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($workoutPlans as $workoutPlan)
-                <tr>
+                <tr class="px-2">
                     <td class="py-2">{{ $workoutPlan->id }}</td>
                     <td class="py-2">{{ $workoutPlan->name }}</td>
                     <td class="py-2">{{ $workoutPlan->body_part }}</td>
                     <td class="py-2">{{ $workoutPlan->type }}</td>
+                    <td class="py-2">{{ $workoutPlan->set }}</td>
+                    <td class="py-2">{{ $workoutPlan->raps }}</td>
+                    <td class="py-2">{{ $workoutPlan->gender }}</td>
+                    <td class="py-2">{{ $workoutPlan->image }}</td>
+                    <td class="py-2">{{ $workoutPlan->subscription->name }}</td>
                     <td class="py-2">
-                        <a href="{{ route('workout_plans.show', $workoutPlan) }}" class="text-blue-500">View</a>
+{{--                        <a href="{{ route('workout_plans.show', $workoutPlan) }}" class="text-blue-500">View</a>--}}
                         <a href="{{ route('workout_plans.edit', $workoutPlan) }}" class="text-yellow-500 mx-2">Edit</a>
                         <form action="{{ route('workout_plans.destroy', $workoutPlan) }}" method="POST" class="inline">
                             @csrf

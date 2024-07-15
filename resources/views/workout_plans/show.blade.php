@@ -7,6 +7,14 @@
         <table class="table-auto w-full">
             <tbody>
             <tr>
+                <td class="border px-4 py-2"><strong>Id:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->id }}</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2"><strong>Name:</strong></td>
+                <td class="border px-4 py-2">{{ $workoutPlan->name }}</td>
+            </tr>
+            <tr>
                 <td class="border px-4 py-2"><strong>Body Part:</strong></td>
                 <td class="border px-4 py-2">{{ $workoutPlan->body_part }}</td>
             </tr>
@@ -16,11 +24,11 @@
             </tr>
             <tr>
                 <td class="border px-4 py-2"><strong>Sets:</strong></td>
-                <td class="border px-4 py-2">{{ $workoutPlan->sets }}</td>
+                <td class="border px-4 py-2">{{ $workoutPlan->set }}</td>
             </tr>
             <tr>
                 <td class="border px-4 py-2"><strong>Reps:</strong></td>
-                <td class="border px-4 py-2">{{ $workoutPlan->reps }}</td>
+                <td class="border px-4 py-2">{{ $workoutPlan->raps }}</td>
             </tr>
             <tr>
                 <td class="border px-4 py-2"><strong>Gender:</strong></td>
@@ -35,13 +43,13 @@
                 <td class="border px-4 py-2">{{ $workoutPlan->subscription->name }}</td>
             </tr>
             <tr>
-                <td class="border px-4 py-2" colspan="2">
-                    <a href="{{ route('workout_plans.edit', $workoutPlan) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</a>
+                <td class="border px-2 py-2" colspan="2">
+                    <a href="{{ route('workout_plans.edit', $workoutPlan) }}" class="bg-black text-white px-2 rounded-full">Edit</a>
 
                     <form action="{{ route('workout_plans.destroy', $workoutPlan) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded ml-2">Delete</button>
+                        <button type="submit" class="bg-black text-white px-2 rounded-full">Delete</button>
                     </form>
                 </td>
             </tr>
