@@ -24,11 +24,9 @@ class User extends Authenticatable
         'subscription_id'
     ];
 
-    public function subscriptions()
+    public function subscription()
     {
-        return $this->belongsTo(Subscription::class)
-            ->withPivot()
-            ->withTimestamps();
+        return $this->belongsTo(Subscription::class);
     }
 
     /**

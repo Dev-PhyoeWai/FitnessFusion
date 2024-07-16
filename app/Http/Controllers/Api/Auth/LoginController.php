@@ -90,6 +90,55 @@ class LoginController extends ApiBaseController
         return $this->success(200, $user, 'User updated successfully.');
     }
 
+    public function show($id)
+    {
+        $user = User::with(['subscriptions.workoutPlans', 'subscriptions.mealPlans'])->find($id);
+
+        if (!$user) {
+            return $this->error(404, 'User not found.');
+        }
+
+        $formattedUser = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'subscriptions' => $user->subscriptions ? [
+                $user->subscriptions->id => [
+                    'workoutPlans' => $user->subscriptions->workoutPlans->map(function ($workoutPlans) {
+                        return [
+                            'id' => $workoutPlans->id,
+                            'name' => $workoutPlans->name,
+                            'body_part' => $workoutPlans->body_part,
+                            'type' => $workoutPlans->type,
+                            'set' => $workoutPlans->set,
+                            'raps' => $workoutPlans->raps,
+                            'gender' => $workoutPlans->gender,
+                            'image' => $workoutPlans->image,
+                        ];
+                    }),
+                    'mealPlans' => $user->subscriptions->mealPlans->map(function ($mealPlans) {
+                        return [
+                            'id' => $mealPlans->id,
+                            'name' => $mealPlans->name,
+                            'ingredient' => $mealPlans->ingredient,
+                            'type' => $mealPlans->type,
+                            'calories' => $mealPlans->calories,
+                            'image' => $mealPlans->image,
+                        ];
+                    }),
+                ],
+            ] : null,
+            'created_at' => $user->created_at,
+            'updated_at' => $user->updated_at,
+        ];
+
+        return response()->json([
+            'user' => $formattedUser,
+            'message' => 'User retrieved successfully.',
+            'currentToken' => auth()->user() ? auth()->user()->currentAccessToken()->plainTextToken : null,
+        ], 200);
+    }
+
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
@@ -158,6 +207,7 @@ class LoginController extends ApiBaseController
 //            'email' => $user->email,
 //            'subscriptions' => $user->subscriptions->mapWithKeys(function ($subscription) {
 //                return [
+
 //                    $subscription->id => [
 //                        'workoutPlans' => $subscription->workoutPlans->map(function ($workoutPlans) {
 //                            return [

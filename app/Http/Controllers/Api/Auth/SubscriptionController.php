@@ -197,6 +197,7 @@ class SubscriptionController extends ApiBaseController
         }
 
         $validator = Validator::make($request->all(), [
+            'user_id'=>'required|integer',
             'name' => 'sometimes|required|string|max:255',
             'month' => 'sometimes|required|integer',
             'weight_type' => 'sometimes|required|string|max:255',
