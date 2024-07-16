@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-white p-4 rounded-lg shadow">
         <h1 class="text-2xl font-bold mb-4">Add Meal Plan</h1>
-        <form action="{{ route('meal_plans.store') }}" method="POST">
+        <form action="{{ route('meal_plans.store') }}" method="POST"  enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700">Name</label>
@@ -23,7 +23,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Image</label>
-                <input type="file" name="image" class="w-full border-gray-300 rounded">
+                <input type="file" name="image" class="w-full border-gray-300 rounded" multiple>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Subscription</label>

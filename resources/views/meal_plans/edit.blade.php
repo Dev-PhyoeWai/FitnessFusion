@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-white p-4 rounded-lg shadow">
         <h1 class="text-2xl font-bold mb-4">Edit Meal Plan</h1>
-        <form action="{{ route('meal_plans.update', $mealPlan) }}" method="POST">
+        <form action="{{ route('meal_plans.update', $mealPlan) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-4">
@@ -24,7 +24,10 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Image</label>
-                <input type="file" name="image" class="w-full border-gray-300 rounded">
+                <input type="file" name="image" class="w-full border-gray-300 rounded" multiple>
+                @if($mealPlan->image)
+                <img src="{{ asset($mealPlan->image) }}" alt="Current Image" width="100">
+            @endif
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Subscription</label>

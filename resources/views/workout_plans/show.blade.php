@@ -36,7 +36,10 @@
             </tr>
             <tr>
                 <td class="border px-4 py-2"><strong>Image:</strong></td>
-                <td class="border px-4 py-2"><img src="{{ $workoutPlan->image }}" alt="{{ $workoutPlan->name }}"></td>
+                <td class="border px-4 py-2">
+                <img src="{{ asset('storage/' . $workoutPlan->image) }}" alt="Workout Plan Image" style="max-width: 100px; height: auto;">
+        
+                </td>
             </tr>
             <tr>
                 <td class="border px-4 py-2"><strong>Subscription:</strong></td>

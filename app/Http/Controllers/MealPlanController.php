@@ -22,7 +22,30 @@ class MealPlanController extends Controller
 
     public function store(Request $request)
     {
-        MealPlan::create($request->all());
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'ingredient' => 'required|string|max:255',
+            'type' => 'required|integer|max:255',
+            'calories' => 'required|string|max:255',
+            'subscription_id' => 'required|integer|exists:subscriptions,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Handle image upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            $filename = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('uploads/images/'), $filename);
+            $imagePath = 'uploads/images/' . $filename; // Save the relative path
+        }
+
+        // Merge image path with the other request data
+        $data = $request->all();
+        $data['image'] = $imagePath;
+
+        MealPlan::create($data);
         return redirect()->route('meal_plans.index');
     }
 
@@ -38,15 +61,37 @@ class MealPlanController extends Controller
         'subscriptions'));
     }
 
-    public function update(Request $request, MealPlan $mealPlan)
+
+    public function update(Request $request, $id)
     {
-        $mealPlan->update($request->all());
+        $mealplan = MealPlan::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($mealplan->image && file_exists(public_path($mealplan->image))) {
+                unlink(public_path($mealplan->image));
+            }
+
+            $imagePath = $request->file('image');
+            $filename = time() . '.' . $imagePath->getClientOriginalExtension();
+            $imagePath->move('uploads/images/', $filename);
+            $mealplan->image = 'uploads/images/' . $filename;
+        }
+
+        $mealplan->update($request->except('image'));
         return redirect()->route('meal_plans.index');
     }
 
-    public function destroy(MealPlan $mealPlan)
+   
+    public function destroy($id)
     {
-        $mealPlan->delete();
+        $mealplan = MealPlan::findOrFail($id);
+
+        // Delete the image if it exists
+        if ($mealplan->image && file_exists(public_path($mealplan->image))) {
+            unlink(public_path($mealplan->image));
+        }
+        $mealplan->delete();
         return redirect()->route('meal_plans.index');
     }
 }

@@ -31,7 +31,11 @@
                     <td class="py-2">{{ $workoutPlan->set }}</td>
                     <td class="py-2">{{ $workoutPlan->raps }}</td>
                     <td class="py-2">{{ $workoutPlan->gender }}</td>
-                    <td class="py-2">{{ $workoutPlan->image }}</td>
+                    <td class="py-2">
+                    @if($workoutPlan->image)
+                        <img src="{{ asset($workoutPlan->image) }}" alt="Current Image" width="100">
+                    @endif
+                    </td>
                     <td class="py-2">{{ $workoutPlan->subscription->name }}</td>
                     <td class="py-2">
 {{--                        <a href="{{ route('workout_plans.show', $workoutPlan) }}" class="text-blue-500">View</a>--}}
