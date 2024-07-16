@@ -92,7 +92,7 @@ class LoginController extends ApiBaseController
 
     public function show($id)
     {
-        $user = User::with(['subscriptions.workoutPlans', 'subscriptions.mealPlans'])->find($id);
+        $user = User::with(['subscription.workoutPlans', 'subscription.mealPlans'])->find($id);
 
         if (!$user) {
             return $this->error(404, 'User not found.');
@@ -102,28 +102,28 @@ class LoginController extends ApiBaseController
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'subscriptions' => $user->subscriptions ? [
-                $user->subscriptions->id => [
-                    'workoutPlans' => $user->subscriptions->workoutPlans->map(function ($workoutPlans) {
+            'subscriptions' => $user->subscription ? [
+                $user->subscription->id => [
+                    'workoutPlans' => $user->subscription->workoutPlans->map(function ($workoutPlan) {
                         return [
-                            'id' => $workoutPlans->id,
-                            'name' => $workoutPlans->name,
-                            'body_part' => $workoutPlans->body_part,
-                            'type' => $workoutPlans->type,
-                            'set' => $workoutPlans->set,
-                            'raps' => $workoutPlans->raps,
-                            'gender' => $workoutPlans->gender,
-                            'image' => $workoutPlans->image,
+                            'id' => $workoutPlan->id,
+                            'name' => $workoutPlan->name,
+                            'body_part' => $workoutPlan->body_part,
+                            'type' => $workoutPlan->type,
+                            'set' => $workoutPlan->set,
+                            'raps' => $workoutPlan->raps,
+                            'gender' => $workoutPlan->gender,
+                            'image' => $workoutPlan->image,
                         ];
                     }),
-                    'mealPlans' => $user->subscriptions->mealPlans->map(function ($mealPlans) {
+                    'mealPlans' => $user->subscription->mealPlans->map(function ($mealPlan) {
                         return [
-                            'id' => $mealPlans->id,
-                            'name' => $mealPlans->name,
-                            'ingredient' => $mealPlans->ingredient,
-                            'type' => $mealPlans->type,
-                            'calories' => $mealPlans->calories,
-                            'image' => $mealPlans->image,
+                            'id' => $mealPlan->id,
+                            'name' => $mealPlan->name,
+                            'ingredient' => $mealPlan->ingredient,
+                            'type' => $mealPlan->type,
+                            'calories' => $mealPlan->calories,
+                            'image' => $mealPlan->image,
                         ];
                     }),
                 ],
