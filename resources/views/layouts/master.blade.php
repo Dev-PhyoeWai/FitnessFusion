@@ -82,7 +82,7 @@
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                                 <a
-                                    href="index.html"
+                                    href="{{route('dashboard')}}"
                                     role="menuitem"
                                     class="block p-2 text-sm text-gray-700 transition-colors duration-200 rounded-md dark:text-light dark:hover:text-light hover:text-gray-700"
                                 >
@@ -229,6 +229,29 @@
                               </span>
                                  <span class="ml-2 text-sm">Meal Plan </span>
                                 <span aria-hidden="true" class="ml-auto">
+                                     <!-- active class 'rotate-180' -->
+                        <svg
+                            class="w-4 h-4 transition-transform transform"
+                            :class="{ 'rotate-180': open }"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                <a
+                                    href="{{route('meal_plans.index')}}"
+                                    role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                                >
+                                    Details
+                                </a>
                         </span>
                       </a>
                         </div>
@@ -254,7 +277,29 @@
                                 <span class="ml-2 text-sm"> Workout </span>
                                 <span aria-hidden="true" class="ml-auto">
                         <!-- active class 'rotate-180' -->
-
+                                    <!-- active class 'rotate-180' -->
+                        <svg
+                            class="w-4 h-4 transition-transform transform"
+                            :class="{ 'rotate-180': open }"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                            </a>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                <a
+                                    href="{{route('workout_plans.index')}}"
+                                    role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                                >
+                                    Details
+                                </a>
                       </span>
                             </a>
                         </div>
@@ -547,7 +592,7 @@
                                 >
                                     <div class="flex justify-center items-center">
                                         <div class="px-2">{{ Auth::user()->name }}</div>
-                                        <img class="mt-1 w-10 h-10 rounded-full" src="{{asset('build/images/admin.png')}}" alt="login-user" />
+                                        <img class="mt-1 w-10 h-10 rounded-full" src="{{asset('build/images/admin-1.jpg')}}" alt="login-user" />
                                     </div>
 
                                 </button>

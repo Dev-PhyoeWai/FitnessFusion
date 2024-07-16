@@ -13,15 +13,16 @@ Route::middleware('auth:sanctum')->group(function () {
             'currentToken' => $request->bearerToken()
         ];
     });
+
+    Route::get('/user/{id}', [LoginController::class, 'show']);
+    Route::put('/user/{id}/edit', [LoginController::class,'update']);
+
     Route::post('user/logout', [LoginController::class, 'logout']);
 
 });
 
 Route::post('user/login', [LoginController::class, 'auth']);
 Route::post('user/register', [LoginController::class, 'store']);
-
-Route::get('/user/{id}', [LoginController::class, 'show']);
-Route::put('/user/{id}/edit', [LoginController::class,'update']);
 
 // API route for Subscriptions
 Route::apiResource('/subscriptions', SubscriptionController::class);

@@ -9,7 +9,7 @@
             <div class="w-full">
 
                 @if(session('status'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-4 rounded relative"
                          role="alert">
                         {{ session('status') }}
                     </div>
@@ -20,8 +20,8 @@
                         <h4 class="text-lg font-semibold flex justify-between items-center">
                             Permissions
                             <a href="{{ route('permissions.create') }}">
-                                <button class="bg-red-500 text-black py-1 px-2 rounded-md hover:bg-gray-700
-                                 transition duration-300">
+                                <button class="bg-red-500 text-black py-0.8 px-2 rounded-md hover:bg-gray-700
+                                 transition duration-300" style="background: #0e7490; color: white;margin-bottom: 4px">
                                     Add Permission
                                 </button>
                             </a>
@@ -32,15 +32,15 @@
                     <div class="card-body">
                         <!-- Card body content -->
                         <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead>
+                                <tr class="w-full bg-gray-200 text-left">
+                                    <th class="py-2 px-4 border-b">ID</th>
+                                    <th class="py-2 px-4 border-b">Name</th>
+                                    <th class="py-2 px-4 border-b">Action</th>
                                 </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tbody>
                                 @foreach($permissions as $p)
                                     <tr>
                                         <td class="py-2 px-4 border-b">{{$p->id}}</td>
@@ -48,20 +48,19 @@
                                         <td class="py-2 px-4 border-b">
                                             <a href="{{ url('permissions/'.$p->id.'/edit') }}"
                                                class="inline-block bg-green-500 text-green-700 py-1 px-3
-                                                rounded-md hover:bg-green-600 transition duration-300">
+                                                rounded-md hover:bg-green-600 transition duration-300" style="color: darkorange">
                                                 Edit
                                             </a>
                                             |
                                             <a href="{{ url('permissions/'.$p->id.'/delete') }}"
                                                class="inline-block bg-red-500 text-black py-1 px-3
-                                                rounded-md hover:bg-red-600 transition duration-300">
+                                                rounded-md hover:bg-red-600 transition duration-300" style="color: red">
                                                 Delete
                                             </a>
 
                                         </td>
                                     </tr>
                                 @endforeach
-                                <!-- Additional rows as needed -->
                                 </tbody>
                             </table>
                         </div>

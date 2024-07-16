@@ -52,7 +52,7 @@ class WorkoutPlanController extends Controller
         // Create the workout plan
         WorkoutPlan::create($data);
         // Redirect to the index route
-        return redirect()->route('workout_plans.index');
+        return redirect()->route('workout_plans.index')->with('status', 'Workout Plan created successfully.');
     }
 
     // Merge image path with the other request data
@@ -98,7 +98,7 @@ class WorkoutPlanController extends Controller
 
         $workoutPlan->update($request->except('image'));
 
-        return redirect()->route('workout_plans.index');
+        return redirect()->route('workout_plans.index')->with('status', 'Workout Plan updated successfully.');
     }
 
 
@@ -112,6 +112,7 @@ class WorkoutPlanController extends Controller
 
         $workoutPlan->delete();
 
-        return redirect()->route('workout_plans.index');
+        return redirect()->route('workout_plans.index')->with('status', 'Workout Plan deleted successfully.');
+
     }
 }
