@@ -19,15 +19,16 @@
                 <input type="text" name="type" value="{{ $mealPlan->type }}" class="w-full border-gray-300 rounded" required>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">Calories</label>
-                <input type="number" name="calories" value="{{ $mealPlan->calories }}" class="w-full border-gray-300 rounded" required>
+                <label class="block text-gray-700">Image</label>
+                <input type="file" name="image"  class="w-full border-gray-300 rounded">
+                @if($mealPlan->image)
+                    <img src="{{ asset($mealPlan->image) }}" alt="Current Image" width="100">
+                @endif
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700">Image</label>
-                <input type="file" name="image" class="w-full border-gray-300 rounded" multiple>
-                @if($mealPlan->image)
-                <img src="{{ asset($mealPlan->image) }}" alt="Current Image" width="100">
-            @endif
+
+                <label class="block text-gray-700">Calories</label>
+                <input type="number" name="calories" value="{{ $mealPlan->calories }}" class="w-full border-gray-300 rounded" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Subscription</label>

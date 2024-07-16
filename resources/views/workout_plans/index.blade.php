@@ -4,7 +4,7 @@
     <div class="bg-white p-4 rounded-lg shadow">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-bold">Workout Plans</h1>
-            <a href="{{ route('workout_plans.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Workout Plan</a>
+            <a href="{{ route('workout_plans.create') }}" class="text-blue-500 px-4 py-2 rounded-md hover:underline">Add Workout Plan</a>
         </div>
         <table class="min-w-full bg-white">
             <thead>
@@ -32,18 +32,18 @@
                     <td class="py-2">{{ $workoutPlan->raps }}</td>
                     <td class="py-2">{{ $workoutPlan->gender }}</td>
                     <td class="py-2">
-                    @if($workoutPlan->image)
-                        <img src="{{ asset($workoutPlan->image) }}" alt="Current Image" width="100">
-                    @endif
+                        @if($workoutPlan->image)
+                            <img src="{{ asset($workoutPlan->image) }}" alt="Current Image" width="100">
+                        @endif
                     </td>
                     <td class="py-2">{{ $workoutPlan->subscription->name }}</td>
                     <td class="py-2">
 {{--                        <a href="{{ route('workout_plans.show', $workoutPlan) }}" class="text-blue-500">View</a>--}}
-                        <a href="{{ route('workout_plans.edit', $workoutPlan) }}" class="text-yellow-500 mx-2">Edit</a>
+                        <a href="{{ route('workout_plans.edit', $workoutPlan) }}" class="text-yellow-500 mx-2 hover:underline">Edit</a>
                         <form action="{{ route('workout_plans.destroy', $workoutPlan) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500">Delete</button>
+                            <button type="submit" class="text-red-600 hover:underline">Delete</button>
                         </form>
                     </td>
                 </tr>

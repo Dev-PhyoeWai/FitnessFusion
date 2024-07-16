@@ -13,12 +13,12 @@ Route::middleware('auth:sanctum')->group(function () {
             'currentToken' => $request->bearerToken()
         ];
     });
-    Route::post('logout', [LoginController::class, 'logout']);
+    Route::post('user/logout', [LoginController::class, 'logout']);
 
 });
 
-Route::post('login', [LoginController::class, 'auth']);
-Route::post('register', [LoginController::class, 'store']);
+Route::post('user/login', [LoginController::class, 'auth']);
+Route::post('user/register', [LoginController::class, 'store']);
 
 Route::get('/user/{id}', [LoginController::class, 'show']);
 Route::put('/user/{id}/edit', [LoginController::class,'update']);

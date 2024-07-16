@@ -214,7 +214,7 @@
                         <div x-data="{ isActive: false, open: false }">
                             <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                             <a
-                                href=""
+                                href="{{route('meal_plans.index')}}"
                                 @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                 :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
@@ -222,12 +222,12 @@
                                 aria-haspopup="true"
                                 :aria-expanded="(open || isActive) ? 'true' : 'false'"
                             >
-                      <span aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.7em" viewBox="0 0 24 24">
-                            <path fill="#555" d="m5.44 7.96l.52-.53c.58-.58 1.54-.58 2.14.04l.02.03c.49.5 1.14.74 1.85.81c.97.09 1.91.61 2.53 1.55c.68 1.08.67 2.52-.04 3.59a3.322 3.322 0 0 1-5.18.55c-.56-.55-.88-1.26-.96-2c-.08-.73-.37-1.42-.88-1.93c-.58-.57-.58-1.53 0-2.11M9.64 16c-1.17 0-2.26-.45-3.07-1.28c-.7-.72-1.14-1.62-1.25-2.6c-.03-.3-.12-.69-.36-1.05C4.36 11.9 4 12.9 4 14c0 1.64.8 3.09 2.03 4H19v-1c0-3.6-2.39-6.65-5.66-7.65c.89 1.4.87 3.27-.04 4.65c-.8 1.25-2.18 2-3.66 2m5.14-8.44h1.27c.87 0 1.63.61 1.63 1.7V10h1.25V9c0-1.5-1.33-2.64-2.88-2.64h-1.27c-.83 0-1.54-.82-1.54-1.66s.71-1.46 1.54-1.46V2C13.24 2 12 3.24 12 4.78s1.24 2.78 2.78 2.78M4.5 7.55c.06-.1.14-.2.23-.3l.52-.52c.09-.09.19-.16.29-.23L4.13 5.07c.14-.27.09-.62-.13-.85a.767.767 0 0 0-1.07 0c-.14.14-.21.31-.22.49c-.18.01-.35.08-.49.22c-.29.29-.29.77 0 1.07c.23.22.57.27.85.13zm13.89-3.16c.51-.51.83-1.2.83-1.97h-1.25c0 .83-.7 1.53-1.53 1.53v1.24c1.86 0 3.32 1.52 3.32 3.38V11H21V8.57a4.61 4.61 0 0 0-2.61-4.18M5 21h14c1.11 0 2-.89 2-2H3a2 2 0 0 0 2 2"/>
-                        </svg>
-                        </span>
-                                <span class="ml-2 text-sm"> Meal Plan </span>
+                              <span aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.7em" viewBox="0 0 24 24">
+                                    <path fill="#555" d="m5.44 7.96l.52-.53c.58-.58 1.54-.58 2.14.04l.02.03c.49.5 1.14.74 1.85.81c.97.09 1.91.61 2.53 1.55c.68 1.08.67 2.52-.04 3.59a3.322 3.322 0 0 1-5.18.55c-.56-.55-.88-1.26-.96-2c-.08-.73-.37-1.42-.88-1.93c-.58-.57-.58-1.53 0-2.11M9.64 16c-1.17 0-2.26-.45-3.07-1.28c-.7-.72-1.14-1.62-1.25-2.6c-.03-.3-.12-.69-.36-1.05C4.36 11.9 4 12.9 4 14c0 1.64.8 3.09 2.03 4H19v-1c0-3.6-2.39-6.65-5.66-7.65c.89 1.4.87 3.27-.04 4.65c-.8 1.25-2.18 2-3.66 2m5.14-8.44h1.27c.87 0 1.63.61 1.63 1.7V10h1.25V9c0-1.5-1.33-2.64-2.88-2.64h-1.27c-.83 0-1.54-.82-1.54-1.66s.71-1.46 1.54-1.46V2C13.24 2 12 3.24 12 4.78s1.24 2.78 2.78 2.78M4.5 7.55c.06-.1.14-.2.23-.3l.52-.52c.09-.09.19-.16.29-.23L4.13 5.07c.14-.27.09-.62-.13-.85a.767.767 0 0 0-1.07 0c-.14.14-.21.31-.22.49c-.18.01-.35.08-.49.22c-.29.29-.29.77 0 1.07c.23.22.57.27.85.13zm13.89-3.16c.51-.51.83-1.2.83-1.97h-1.25c0 .83-.7 1.53-1.53 1.53v1.24c1.86 0 3.32 1.52 3.32 3.38V11H21V8.57a4.61 4.61 0 0 0-2.61-4.18M5 21h14c1.11 0 2-.89 2-2H3a2 2 0 0 0 2 2"/>
+                                </svg>
+                              </span>
+                                 <span class="ml-2 text-sm">Meal Plan </span>
                                 <span aria-hidden="true" class="ml-auto">
                         </span>
                       </a>
@@ -237,7 +237,7 @@
                         <div x-data="{ isActive: false, open: false }">
                             <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                             <a
-                                href="#"
+                                href="{{route('workout_plans.index')}}"
                                 @click="$event.preventDefault(); open = !open"
                                 class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-primary-100 dark:hover:bg-primary"
                                 :class="{ 'bg-primary-100 dark:bg-primary': isActive || open }"
@@ -449,46 +449,46 @@
                         <!-- Desktop Right buttons -->
                         <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
                             <!-- Toggle dark theme button -->
-                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
-                                <div
-                                    class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"
-                                ></div>
-                                <div
-                                    class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm"
-                                    :class="{ 'translate-x-0 -translate-y-px  bg-white text-primary-dark': !isDark, 'translate-x-6 text-primary-100 bg-primary-darker': isDark }"
-                                >
-                                    <svg
-                                        x-show="!isDark"
-                                        class="w-4 h-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                                        />
-                                    </svg>
-                                    <svg
-                                        x-show="isDark"
-                                        class="w-4 h-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                        />
-                                    </svg>
-                                </div>
-                            </button>
+{{--                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">--}}
+{{--                                <div--}}
+{{--                                    class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"--}}
+{{--                                ></div>--}}
+{{--                                <div--}}
+{{--                                    class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm"--}}
+{{--                                    :class="{ 'translate-x-0 -translate-y-px  bg-white text-primary-dark': !isDark, 'translate-x-6 text-primary-100 bg-primary-darker': isDark }"--}}
+{{--                                >--}}
+{{--                                    <svg--}}
+{{--                                        x-show="!isDark"--}}
+{{--                                        class="w-4 h-4"--}}
+{{--                                        xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                        fill="none"--}}
+{{--                                        viewBox="0 0 24 24"--}}
+{{--                                        stroke="currentColor"--}}
+{{--                                    >--}}
+{{--                                        <path--}}
+{{--                                            stroke-linecap="round"--}}
+{{--                                            stroke-linejoin="round"--}}
+{{--                                            stroke-width="2"--}}
+{{--                                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"--}}
+{{--                                        />--}}
+{{--                                    </svg>--}}
+{{--                                    <svg--}}
+{{--                                        x-show="isDark"--}}
+{{--                                        class="w-4 h-4"--}}
+{{--                                        xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                        fill="none"--}}
+{{--                                        viewBox="0 0 24 24"--}}
+{{--                                        stroke="currentColor"--}}
+{{--                                    >--}}
+{{--                                        <path--}}
+{{--                                            stroke-linecap="round"--}}
+{{--                                            stroke-linejoin="round"--}}
+{{--                                            stroke-width="2"--}}
+{{--                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"--}}
+{{--                                        />--}}
+{{--                                    </svg>--}}
+{{--                                </div>--}}
+{{--                            </button>--}}
 
                             <!-- Notification button -->
                             <button
@@ -613,46 +613,46 @@
                         >
                             <div class="space-x-2">
                                 <!-- Toggle dark theme button -->
-                                <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
-                                    <div
-                                        class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"
-                                    ></div>
-                                    <div
-                                        class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm"
-                                        :class="{ 'translate-x-0 -translate-y-px  bg-white text-primary-dark': !isDark, 'translate-x-6 text-primary-100 bg-primary-darker': isDark }"
-                                    >
-                                        <svg
-                                            x-show="!isDark"
-                                            class="w-4 h-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                                            />
-                                        </svg>
-                                        <svg
-                                            x-show="isDark"
-                                            class="w-4 h-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                            />
-                                        </svg>
-                                    </div>
-                                </button>
+{{--                                <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">--}}
+{{--                                    <div--}}
+{{--                                        class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"--}}
+{{--                                    ></div>--}}
+{{--                                    <div--}}
+{{--                                        class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm"--}}
+{{--                                        :class="{ 'translate-x-0 -translate-y-px  bg-white text-primary-dark': !isDark, 'translate-x-6 text-primary-100 bg-primary-darker': isDark }"--}}
+{{--                                    >--}}
+{{--                                        <svg--}}
+{{--                                            x-show="!isDark"--}}
+{{--                                            class="w-4 h-4"--}}
+{{--                                            xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                            fill="none"--}}
+{{--                                            viewBox="0 0 24 24"--}}
+{{--                                            stroke="currentColor"--}}
+{{--                                        >--}}
+{{--                                            <path--}}
+{{--                                                stroke-linecap="round"--}}
+{{--                                                stroke-linejoin="round"--}}
+{{--                                                stroke-width="2"--}}
+{{--                                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"--}}
+{{--                                            />--}}
+{{--                                        </svg>--}}
+{{--                                        <svg--}}
+{{--                                            x-show="isDark"--}}
+{{--                                            class="w-4 h-4"--}}
+{{--                                            xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                            fill="none"--}}
+{{--                                            viewBox="0 0 24 24"--}}
+{{--                                            stroke="currentColor"--}}
+{{--                                        >--}}
+{{--                                            <path--}}
+{{--                                                stroke-linecap="round"--}}
+{{--                                                stroke-linejoin="round"--}}
+{{--                                                stroke-width="2"--}}
+{{--                                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"--}}
+{{--                                            />--}}
+{{--                                        </svg>--}}
+{{--                                    </div>--}}
+{{--                                </button>--}}
 
                                 <!-- Notification button -->
                                 <button
@@ -1070,7 +1070,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                           </svg>
                         </span>
-                                </a>
+                            </a>
                                 <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Layouts">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
@@ -1775,10 +1775,10 @@
         return {
             loading: true,
             isDark: getTheme(),
-            toggleTheme() {
-                this.isDark = !this.isDark
-                setTheme(this.isDark)
-            },
+            // toggleTheme() {
+            //     this.isDark = !this.isDark
+            //     setTheme(this.isDark)
+            // },
             setLightTheme() {
                 this.isDark = false
                 setTheme(this.isDark)

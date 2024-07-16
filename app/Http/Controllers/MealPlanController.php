@@ -26,8 +26,8 @@ class MealPlanController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'ingredient' => 'required|string|max:255',
-            'type' => 'required|integer|max:255',
-            'calories' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'calories' => 'required|integer|max:255',
             'subscription_id' => 'required|integer|exists:subscriptions,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -61,7 +61,6 @@ class MealPlanController extends Controller
         'subscriptions'));
     }
 
-
     public function update(Request $request, $id)
     {
         $mealplan = MealPlan::findOrFail($id);
@@ -82,7 +81,6 @@ class MealPlanController extends Controller
         return redirect()->route('meal_plans.index');
     }
 
-   
     public function destroy($id)
     {
         $mealplan = MealPlan::findOrFail($id);

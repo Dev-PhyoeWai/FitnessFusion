@@ -13,10 +13,10 @@ class Subscription extends Model
         'name', 'month', 'weight_type', 'image'
     ];
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
+//    public function users()
+//    {
+//        return $this->hasMany(User::class);
+//    }
 
     public function workoutPlans()
     {
