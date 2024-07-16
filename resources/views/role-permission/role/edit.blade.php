@@ -9,8 +9,8 @@
                         <h4 class="text-lg font-semibold flex justify-between items-center">
                             Edit Role
                             <a href="{{ url('roles') }}">
-                                <button class="bg-red-500 text-black py-1 px-2 rounded-md hover:bg-gray-700
-                                 transition duration-300">
+                                <button class="bg-red-500 text-black py-0.8 px-2 rounded-md hover:bg-gray-700
+                                 transition duration-300" style="background: black;color: white;margin-bottom: 4px">
                                     Back
                                 </button>
                             </a>
@@ -30,8 +30,8 @@
                                    sm:text-sm" />
                             </div>
                             <div class="mb-4">
-                                <button type="submit" class="bg-info text-black py-2 px-4 rounded-md
-                                hover:bg-info-dark transition duration-300">
+                                <button type="submit" class="bg-info text-black py-0.8 px-2 rounded-md
+                                hover:bg-info-dark transition duration-300" style="color:white;background: #0e7490">
                                     Update
                                 </button>
                             </div>

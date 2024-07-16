@@ -102,8 +102,12 @@ class LoginController extends ApiBaseController
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
+            'age' => $user->age,
+            'height' => $user->height,
+            'weight' => $user->weight,
+            'image' => $user->image,
+            'BMI' => $user->BMI,
             'subscriptions' => $user->subscription ? [
-                $user->subscription->id => [
                     'workoutPlans' => $user->subscription->workoutPlans->map(function ($workoutPlan) {
                         return [
                             'id' => $workoutPlan->id,
@@ -126,8 +130,7 @@ class LoginController extends ApiBaseController
                             'image' => $mealPlan->image,
                         ];
                     }),
-                ],
-            ] : null,
+                ]   : null,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
         ];
@@ -135,9 +138,10 @@ class LoginController extends ApiBaseController
         return response()->json([
             'user' => $formattedUser,
             'message' => 'User retrieved successfully.',
-            'currentToken' => auth()->user() ? auth()->user()->currentAccessToken()->plainTextToken : null,
+            'currentToken' => auth()->check() ? auth()->user()->currentAccessToken()->plainTextToken : null,
         ], 200);
     }
+
 
     public function logout(Request $request)
     {

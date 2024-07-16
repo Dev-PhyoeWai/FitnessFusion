@@ -48,7 +48,7 @@ class WorkoutPlanController extends Controller
         // Create the workout plan
         WorkoutPlan::create($data);
         // Redirect to the index route
-        return redirect()->route('workout_plans.index');
+        return redirect()->route('workout_plans.index')->with('status', 'Workout Plan created successfully.');
     }
 
     public function show(WorkoutPlan $workoutPlan)
@@ -82,7 +82,7 @@ class WorkoutPlanController extends Controller
 
         $workoutPlan->update($request->except('image'));
 
-        return redirect()->route('workout_plans.index');
+        return redirect()->route('workout_plans.index')->with('status', 'Workout Plan updated successfully.');
     }
 
     public function destroy($id)
@@ -94,6 +94,6 @@ class WorkoutPlanController extends Controller
         }
 
         $workoutPlan->delete();
-        return redirect()->route('workout_plans.index');
+        return redirect()->route('workout_plans.index')->with('status', 'Workout Plan deleted successfully.');
     }
 }
