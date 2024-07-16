@@ -32,6 +32,11 @@
                     </td>
                     <td class="py-2">{{ $mealPlan->calories }}</td>
                     <td class="py-2">
+                    @if($mealPlan->image)
+                        <img src="{{ asset($mealPlan->image) }}" alt="Current Image" width="100">
+                    @endif
+                    </td>
+                    <td class="py-2">
                         <a href="{{ route('meal_plans.show', $mealPlan) }}" class="text-blue-500">View</a>
                         <a href="{{ route('meal_plans.edit', $mealPlan) }}" class="text-yellow-500 mx-2">Edit</a>
                         <form action="{{ route('meal_plans.destroy', $mealPlan) }}" method="POST" class="inline">
