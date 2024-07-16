@@ -29,7 +29,9 @@
             <div class="mb-4">
                 <label class="block text-gray-700">Image</label>
                 <input type="file" name="image"  class="w-full border-gray-300 rounded">
-                
+                @if($workoutPlan->image)
+                <img src="{{ asset($workoutPlan->image) }}" alt="Current Image" width="100">
+            @endif
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Gender</label>
