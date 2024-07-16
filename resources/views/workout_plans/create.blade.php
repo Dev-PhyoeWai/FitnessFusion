@@ -27,7 +27,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Image</label>
-                <input type="file" name="image" class="w-full border-gray-300 rounded">
+                <input type="file" name="image" class="w-full border-gray-300 rounded" multiple>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Gender</label>

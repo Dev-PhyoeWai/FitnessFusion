@@ -26,6 +26,7 @@
                 @endif
             </div>
             <div class="mb-4">
+
                 <label class="block text-gray-700">Calories</label>
                 <input type="number" name="calories" value="{{ $mealPlan->calories }}" class="w-full border-gray-300 rounded" required>
             </div>
