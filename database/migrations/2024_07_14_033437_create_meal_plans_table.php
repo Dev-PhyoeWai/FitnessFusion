@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ingredient');
             $table->string('type');
             $table->string('image')->nullable();
-            $table->string('calories');
+            $table->integer('calories');
             $table->foreignId('subscription_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

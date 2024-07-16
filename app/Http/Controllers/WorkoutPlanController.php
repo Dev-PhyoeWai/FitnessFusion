@@ -22,7 +22,32 @@ class WorkoutPlanController extends Controller
 
     public function store(Request $request)
     {
-        WorkoutPlan::create($request->all());
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'body_part' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'set' => 'required|integer',
+            'raps' => 'required|integer',
+            'gender' => 'required|string|max:255',
+            'subscription_id' => 'required|integer|exists:subscriptions,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        // Handle image upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            $filename = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('uploads/images/'), $filename);
+            $imagePath = 'uploads/images/' . $filename; // Save the relative path
+        }
+        // Merge image path with the other request data
+        $data = $request->all();
+        $data['image'] = $imagePath;
+
+        // Create the workout plan
+        WorkoutPlan::create($data);
+        // Redirect to the index route
         return redirect()->route('workout_plans.index');
     }
 
@@ -38,14 +63,36 @@ class WorkoutPlanController extends Controller
             'subscriptions'));
     }
 
-    public function update(Request $request, WorkoutPlan $workoutPlan)
+    public function update(Request $request, $id)
     {
-        $workoutPlan->update($request->all());
+        $workoutPlan = WorkoutPlan::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+
+            // Delete old image if it exists
+            if ($workoutPlan->image && file_exists(public_path($workoutPlan->image))) {
+                unlink(public_path($workoutPlan->image));
+            }
+
+            $imagePath = $request->file('image');
+            $filename = time() . '.' . $imagePath->getClientOriginalExtension();
+            $imagePath->move('uploads/images/', $filename);
+            $workoutPlan->image = 'uploads/images/' . $filename;
+        }
+
+        $workoutPlan->update($request->except('image'));
+
         return redirect()->route('workout_plans.index');
     }
 
-    public function destroy(WorkoutPlan $workoutPlan)
+    public function destroy($id)
     {
+        $workoutPlan = WorkoutPlan::findOrFail($id);
+        // Delete the image if it exists
+        if ($workoutPlan->image && file_exists(public_path($workoutPlan->image))) {
+            unlink(public_path($workoutPlan->image));
+        }
+
         $workoutPlan->delete();
         return redirect()->route('workout_plans.index');
     }

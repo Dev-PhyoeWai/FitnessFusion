@@ -13,8 +13,8 @@
                 <th class="py-2">Name</th>
                 <th class="py-2">Ingredient</th>
                 <th class="py-2">Type</th>
-                <th class="py-2">Calories</th>
                 <th class="py-2">Image</th>
+                <th class="py-2">Calories</th>
                 <th class="py-2">Actions</th>
             </tr>
             </thead>
@@ -25,6 +25,11 @@
                     <td class="py-2">{{ $mealPlan->name }}</td>
                     <td class="py-2">{{ $mealPlan->ingredient }}</td>
                     <td class="py-2">{{ $mealPlan->type }}</td>
+                    <td class="py-2">
+                        @if($mealPlan->image)
+                            <img src="{{ asset($mealPlan->image) }}" alt="Current Image" width="100">
+                        @endif
+                    </td>
                     <td class="py-2">{{ $mealPlan->calories }}</td>
                     <td class="py-2">
                         <a href="{{ route('meal_plans.show', $mealPlan) }}" class="text-blue-500">View</a>
