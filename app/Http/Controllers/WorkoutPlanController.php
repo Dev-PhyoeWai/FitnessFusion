@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use App\Models\WorkoutPlan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WorkoutPlanController extends Controller
 {
@@ -16,9 +18,11 @@ class WorkoutPlanController extends Controller
 
     public function create()
     {
-        $subscriptions = Subscription::all(); // Fetch all subscriptions
+        $subscriptions = Subscription::all();
         return view('workout_plans.create', compact('subscriptions'));
     }
+
+  
 
     public function store(Request $request)
     {
@@ -51,6 +55,20 @@ class WorkoutPlanController extends Controller
         return redirect()->route('workout_plans.index')->with('status', 'Workout Plan created successfully.');
     }
 
+    // Merge image path with the other request data
+    $data = $request->all();
+    $data['image'] = $imagePath;
+
+    // Create the workout plan
+    WorkoutPlan::create($data);
+
+    // Redirect to the index route
+    return redirect()->route('workout_plans.index');
+}
+
+
+
+
     public function show(WorkoutPlan $workoutPlan)
     {
         return view('workout_plans.show', compact('workoutPlan'));
@@ -59,16 +77,14 @@ class WorkoutPlanController extends Controller
     public function edit(WorkoutPlan $workoutPlan)
     {
         $subscriptions = Subscription::all();
-        return view('workout_plans.edit', compact('workoutPlan',
-            'subscriptions'));
+        return view('workout_plans.edit', compact('workoutPlan', 'subscriptions'));
     }
-
+      
     public function update(Request $request, $id)
     {
         $workoutPlan = WorkoutPlan::findOrFail($id);
 
         if ($request->hasFile('image')) {
-
             // Delete old image if it exists
             if ($workoutPlan->image && file_exists(public_path($workoutPlan->image))) {
                 unlink(public_path($workoutPlan->image));
@@ -85,6 +101,7 @@ class WorkoutPlanController extends Controller
         return redirect()->route('workout_plans.index')->with('status', 'Workout Plan updated successfully.');
     }
 
+
     public function destroy($id)
     {
         $workoutPlan = WorkoutPlan::findOrFail($id);
@@ -94,6 +111,8 @@ class WorkoutPlanController extends Controller
         }
 
         $workoutPlan->delete();
+
         return redirect()->route('workout_plans.index')->with('status', 'Workout Plan deleted successfully.');
+
     }
 }
