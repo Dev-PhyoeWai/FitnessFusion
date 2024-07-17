@@ -86,7 +86,7 @@
                             <div class="mb-4">
                                 <button type="submit" class="bg-amber-200 text-black py-0.8 px-2 rounded-md
                                 hover:bg-info-dark transition duration-300" style="color:white;background: #0e7490">
-                                    Update Workout Plan
+                                    Update
                                 </button>
                             </div>
                         </form>

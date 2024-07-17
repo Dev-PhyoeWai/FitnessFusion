@@ -46,7 +46,8 @@ class MealPlanController extends Controller
         $data['image'] = $imagePath;
 
         MealPlan::create($data);
-        return redirect()->route('meal_plans.index');
+        return redirect()->route('meal_plans.index')
+            ->with('status', 'Meal plan has been created!');
     }
 
     public function show(MealPlan $mealPlan)
@@ -78,7 +79,8 @@ class MealPlanController extends Controller
         }
 
         $mealplan->update($request->except('image'));
-        return redirect()->route('meal_plans.index');
+        return redirect()->route('meal_plans.index')
+            ->with('status', 'Meal plan has been updated!');
     }
 
     public function destroy($id)
@@ -90,6 +92,7 @@ class MealPlanController extends Controller
             unlink(public_path($mealplan->image));
         }
         $mealplan->delete();
-        return redirect()->route('meal_plans.index');
+        return redirect()->route('meal_plans.index')
+            ->with('status', 'Meal plan has been deleted!');
     }
 }
