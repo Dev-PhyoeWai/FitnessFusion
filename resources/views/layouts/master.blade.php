@@ -436,7 +436,7 @@
                 </div>
             </aside>
 
-            <div class="flex-1 h-full overflow-x-hidden overflow-y-auto">
+            <div class="flex-1 h-full overflow-x-hidden overflow-y-auto ">
                 <!-- Navbar -->
                 <header class="relative bg-white dark:bg-darker">
                     <div class="flex items-center justify-between p-2 border-b dark:border-primary-darker">
@@ -1153,13 +1153,13 @@
 
                 <!-- Main footer -->
                 <footer
-                    class="flex items-center justify-between p-4 bg-white border-t dark:bg-darker dark:border-primary-darker"
-                >
+                    class="flex items-center justify-between p-4 bg-white border-t
+                     dark:bg-darker dark:border-primary-darker">
                     <div>LARAVEL-TEAM &copy; 2024</div>
                     <div>
                         Made by
-                        <a href="https://github.com/taylorotwell" target="_blank" class="text-blue-500 hover:underline"
-                        >TPP-LARAVEL-TEAM</a
+                        <a href="https://github.com/taylorotwell" target="_blank" class="hover:underline"
+                        style="color: #0e7490">TPP-LARAVEL-TEAM</a
                         >
                     </div>
                 </footer>
