@@ -22,7 +22,7 @@ class WorkoutPlanController extends Controller
         return view('workout_plans.create', compact('subscriptions'));
     }
 
-  
+
 
     public function store(Request $request)
     {
@@ -55,20 +55,6 @@ class WorkoutPlanController extends Controller
         return redirect()->route('workout_plans.index')->with('status', 'Workout Plan created successfully.');
     }
 
-    // Merge image path with the other request data
-    $data = $request->all();
-    $data['image'] = $imagePath;
-
-    // Create the workout plan
-    WorkoutPlan::create($data);
-
-    // Redirect to the index route
-    return redirect()->route('workout_plans.index');
-}
-
-
-
-
     public function show(WorkoutPlan $workoutPlan)
     {
         return view('workout_plans.show', compact('workoutPlan'));
@@ -79,7 +65,7 @@ class WorkoutPlanController extends Controller
         $subscriptions = Subscription::all();
         return view('workout_plans.edit', compact('workoutPlan', 'subscriptions'));
     }
-      
+
     public function update(Request $request, $id)
     {
         $workoutPlan = WorkoutPlan::findOrFail($id);

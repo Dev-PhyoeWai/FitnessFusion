@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-white p-4 rounded-lg shadow">
         <h1 class="text-2xl font-bold mb-4">Add User</h1>
-        <form action="{{ route('users.store',$user)}}" method="POST">
+        <form action="{{ route('users.update',$user)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-4">
@@ -12,7 +12,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Email</label>
-                <input type="email" name="email"  value="{{ $user->email }}" class="w-full border-gray-300 rounded" required>
+                <input type="email" name="email"  readonly value="{{ $user->email }}" class="w-full border-gray-300 rounded" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Age</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Height</label>
-                <input type="number" name="height" readonly value="{{ $user->height }}" class="w-full border-gray-300 rounded" required>
+                <input type="number" name="height"  value="{{ $user->height }}" class="w-full border-gray-300 rounded" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Weight</label>
@@ -28,11 +28,15 @@
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">BMI</label>
-                <input type="number" step="0.1" name="BMI"  value="{{ $user->bmi }}" class="w-full border-gray-300 rounded" required>
+                <input type="text"  name="BMI"  value="{{ $user->bmi }}" class="w-full border-gray-300 rounded" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Password</label>
-                <input type="password" name="password" class="w-full border-gray-300 rounded" required>
+                <input type="password" name="password" readonly value="{{ $user->password }}" class="w-full border-gray-300 rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700">Image</label>
+                <input type="file" name="image"  class="w-full border-gray-300 rounded" required>
             </div>
             <div class="mb-4">
                 <label class="block text-gray-700">Subscription</label>
@@ -42,7 +46,7 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded">Add User</button>
+            <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded">Update</button>
         </form>
     </div>
 @endsection
