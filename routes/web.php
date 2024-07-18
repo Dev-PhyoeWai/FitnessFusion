@@ -60,6 +60,7 @@ Route::resource('goal',GoalsController::class);
 
 
 Route::resource('users', UserController::class);
+
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('workout_plans', WorkoutPlanController::class);
 Route::resource('meal_plans', MealPlanController::class);

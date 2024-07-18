@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+
+    @include('role-permission.nav-links')
+
     <div class="bg-white p-4 rounded-lg shadow">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-2xl font-bold">Users</h1>
@@ -22,7 +25,6 @@
                     <td class="py-2">{{ $user->name }}</td>
                     <td class="py-2">{{ $user->email }}</td>
                     <td class="py-2">
-                        <a href="{{ route('users.show', $user) }}" class="text-blue-500">View</a>
                         <a href="{{ route('users.edit', $user) }}" class="text-yellow-500 mx-2">Edit</a>
                         <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline">
                             @csrf

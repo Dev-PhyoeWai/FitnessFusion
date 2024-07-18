@@ -69,7 +69,7 @@ class LoginController extends ApiBaseController
             return $this->error(404, 'User not found.');
         }
 
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'sometimes|string|max:255',
             'email' => 'email|max:255|unique:users,email',
             'age' => 'integer|min:0|max:120',
@@ -77,15 +77,20 @@ class LoginController extends ApiBaseController
             'weight' => 'numeric|min:0|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'BMI' => 'nullable|numeric|min:0|max:100',
-            'password' => 'string|min:8|confirmed',
             'subscription_id' => 'nullable|integer|exists:subscriptions,id',
         ]);
 
-        if ($validator->fails()) {
-            return $this->error(400, $validator->errors()->first());
+        if ($request->hasFile('image')) {
+            if ($user->image && file_exists(public_path($user->image))) {
+                unlink(public_path($user->image));
+            }
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('uploads/profiles'), $imageName);
+            $image = 'uploads/profiles/'.$imageName;
+            $user->update(array_merge(['image' => $image, $request->all()]));
+        }else{
+            $user->update($request->all());
         }
-
-        $user->update($request->all());
 
         return $this->success(200, $user, 'User updated successfully.');
     }
