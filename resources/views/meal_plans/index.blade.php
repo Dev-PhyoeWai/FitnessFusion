@@ -78,6 +78,8 @@
                         <th class="py-2 px-4 border-b">Name</th>
                         <th class="py-2 px-4 border-b">Ingredient</th>
                         <th class="py-2 px-4 border-b">Type</th>
+                        <th class="py-2 px-4 border-b">Day</th>
+                        <th class="py-2 px-4 border-b">Week</th>
                         <th class="py-2 px-4 border-b">Image</th>
                         <th class="py-2 px-4 border-b">Calories</th>
                         <th class="py-2 px-4 border-b">Subscription</th>
@@ -91,6 +93,8 @@
                             <td class="py-2 px-2 border-b">{{ $mealPlan->name }}</td>
                             <td class="py-2 px-3 border-b">{{ $mealPlan->ingredient }}</td>
                             <td class="py-2 px-4 border-b">{{ $mealPlan->type }}</td>
+                            <td class="py-2 px-4 border-b">{{ $mealPlan->day }}</td>
+                            <td class="py-2 px-4 border-b">{{ $mealPlan->week }}</td>
                             <td class="py-2 px-4 border-b">
                                 @if($mealPlan->image)
                                     <img src="{{ asset($mealPlan->image) }}" alt="Current Image" width="45">
@@ -121,7 +125,7 @@
     </div>
 
     <script>
-        const rowsPerPage = 5;
+        const rowsPerPage = 15;
         let currentPage = 1;
         const tableBody = document.getElementById('workoutPlansTableBody');
         const totalRows = tableBody.getElementsByTagName('tr').length;

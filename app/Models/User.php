@@ -28,6 +28,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Subscription::class);
     }
+    public function userLogs()
+    {
+        return $this->hasMany(Userlogs::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

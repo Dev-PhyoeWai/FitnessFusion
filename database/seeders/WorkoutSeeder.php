@@ -13,6 +13,6 @@ class WorkoutSeeder extends Seeder
      */
     public function run(): void
     {
-        WorkoutPlan::factory()->count(10)->create();
+        WorkoutPlan::factory()->count(120)->create();
     }
 }

@@ -29,6 +29,8 @@
                         <th class="py-2 px-4 border-b">Name</th>
                         <th class="py-2 px-4 border-b">Body Part</th>
                         <th class="py-2 px-4 border-b">Type</th>
+                        <th class="py-2 px-4 border-b">Day</th>
+                        <th class="py-2 px-4 border-b">Week</th>
                         <th class="py-2 px-4 border-b">Set</th>
                         <th class="py-2 px-4 border-b">Rap</th>
                         <th class="py-2 px-4 border-b">Gender</th>
@@ -44,6 +46,8 @@
                             <td class="py-2 px-2 border-b">{{ $workoutPlan->name }}</td>
                             <td class="py-2 px-3 border-b">{{ $workoutPlan->body_part }}</td>
                             <td class="py-2 px-4 border-b">{{ $workoutPlan->type }}</td>
+                            <td class="py-2 px-4 border-b">{{ $workoutPlan->day }}</td>
+                            <td class="py-2 px-4 border-b">{{ $workoutPlan->week }}</td>
                             <td class="py-2 px-4 border-b">{{ $workoutPlan->set }}</td>
                             <td class="py-2 px-4 border-b">{{ $workoutPlan->raps }}</td>
                             <td class="py-2 px-4 border-b">{{ $workoutPlan->gender }}</td>
@@ -76,7 +80,7 @@
     </div>
 
     <script>
-        const rowsPerPage = 5;
+        const rowsPerPage = 15;
         let currentPage = 1;
         const tableBody = document.getElementById('workoutPlansTableBody');
         const totalRows = tableBody.getElementsByTagName('tr').length;

@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Subscription;
 use App\Models\User;
+use App\Models\Userlogs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -85,8 +87,8 @@ class LoginController extends ApiBaseController
                 unlink(public_path($user->image));
             }
             $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('uploads/profiles'), $imageName);
-            $image = 'uploads/profiles/'.$imageName;
+            $request->image->move(public_path('storage/profiles'), $imageName);
+            $image = 'storage/profiles/'.$imageName;
             $user->update(array_merge(['image' => $image, $request->all()]));
         }else{
             $user->update($request->all());
@@ -155,6 +157,40 @@ class LoginController extends ApiBaseController
         return response()->json([
             'message' => 'Logged out successfully.'
         ]);
+    }
+
+    public function subscribe(Request $request, $userId)
+    {
+        $validator = Validator::make($request->all(), [
+            'subscription_id' => 'required|exists:subscriptions,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        // $user= Auth::user();
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $subscription = Subscription::find($request->subscription_id);
+
+        $user->subscription_id = $subscription->id;
+        $user->save();
+
+        // Log the subscription
+        Userlogs::create([
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'user_email' => $user->email,
+            'subscription_id' => $subscription->id,
+            'subscription_name' => $subscription->name,
+        ]);
+
+        return response()->json(['success' => 'User subscribed successfully', 'user' => $user], 200);
     }
 }
 

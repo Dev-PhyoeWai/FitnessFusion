@@ -10,7 +10,7 @@ class WorkoutPlan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'body_part', 'type', 'set',
+        'name', 'body_part', 'type','day','week','status', 'set',
         'raps', 'image', 'gender', 'subscription_id'
     ];
 

@@ -12,6 +12,9 @@ class CreateWorkoutPlansTable extends Migration
             $table->string('name');
             $table->string('body_part');
             $table->string('type');
+            $table->string('day');
+            $table->string('week');
+            $table->boolean('status')->default(1);
             $table->integer('set');
             $table->integer('raps');
             $table->string('image')->nullable();

@@ -48,21 +48,24 @@ Route::get('roles/{roleID}/delete', [RoleController::class,'destroy']);
 Route::get('roles/{roleID}/give-permissions', [RoleController::class,'addPermissionToRole']);
 Route::put('roles/{roleID}/give-permissions', [RoleController::class,'givePermissionToRole']);
 
-Route::resource('subscription-types', SubscriptionTypeController::class);
 Route::resource('weight-types', WeightTypeController::class);
 Route::resource('sub-weights', SubWeightController::class);
-// Api
-Route::apiResource('subscription-types', SubscriptionTypeController::class);
+
 Route::apiResource('weight-types', WeightTypeController::class);
 
 Route::resource('activity',ActivityController::class);
 Route::resource('goal',GoalsController::class);
-
 
 Route::resource('users', UserController::class);
 
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('workout_plans', WorkoutPlanController::class);
 Route::resource('meal_plans', MealPlanController::class);
+
+Route::post('/users/{userId}/subscribe', [UserController::class, 'subscribe']);
+// routes/web.php
+Route::get('/subscribe', function () {
+    return view('subscribe');
+});
 
 require __DIR__.'/auth.php';

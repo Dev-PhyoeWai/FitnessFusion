@@ -37,8 +37,8 @@ class MealPlanController extends Controller
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $filename = time() . '.' . $imageFile->getClientOriginalExtension();
-            $imageFile->move(public_path('uploads/images/'), $filename);
-            $imagePath = 'uploads/images/' . $filename; // Save the relative path
+            $imageFile->move(public_path('storage/images/meal/'), $filename);
+            $imagePath = 'storage/images/meal/' . $filename; // Save the relative path
         }
 
         // Merge image path with the other request data
@@ -74,8 +74,8 @@ class MealPlanController extends Controller
 
             $imagePath = $request->file('image');
             $filename = time() . '.' . $imagePath->getClientOriginalExtension();
-            $imagePath->move('uploads/images/', $filename);
-            $mealplan->image = 'uploads/images/' . $filename;
+            $imagePath->move('uploads/images/meal/', $filename);
+            $mealplan->image = 'uploads/images/meal/' . $filename;
         }
 
         $mealplan->update($request->except('image'));

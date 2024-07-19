@@ -15,17 +15,24 @@ class WorkoutPlanFactory extends Factory
             'name' => $this->getName(),
             'body_part' => $this -> getBodyPart(),
             'type' => $this -> getType(),
+            'day' => $this -> getDay(),
+            'week' => $this -> getWeek(),
+            'status' => $this -> getStatus(),
             'set' => $this -> getSet(),
             'raps' => $this -> getRaps(),
             'gender' => $this -> getGender(),
+            'subscription_id' => $this -> getSubId(),
         ];
     }
 
         private function getName()
         {
             $names = [
-                'Squat', 'Row', 'Dumbbell Pullover', 'Bench Press', 'Leg Press',
-                'Jumping Jack','High kness', 'Burpees', 'Box Jumps'
+                'Box Jumps','Dumbbell Pullover', 'Squat', 'Row',
+                'Jumping Jack','High kness',
+                'Burpees', 'Bench Press',
+                'Leg Press',
+
             ];
             return $names[array_rand($names)];
         }
@@ -33,7 +40,7 @@ class WorkoutPlanFactory extends Factory
         private function getBodyPart()
         {
             $bodyPart = [
-                'Upper Body', 'Lower Body', 'Core'
+                'Lower Body', 'Core','Upper Body'
             ];
             return $bodyPart[array_rand($bodyPart)];
         }
@@ -41,12 +48,33 @@ class WorkoutPlanFactory extends Factory
         private function getType()
         {
             $types = [
-                'Weight Loss', 'Weight Gain'
+//                'Weight Gain'
+                'Weight Loss'
             ];
             return $types[array_rand($types)];
         }
+        private function getDay()
+        {
+            $day = [
+                'Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6','Day 7'
+            ];
+            return $day[array_rand($day)];
+        }
+        private function getWeek()
+        {
+            $week = [
+                'Week 1', 'Week 2', 'Week 3', 'Week 4'
+            ];
+            return $week[array_rand($week)];
+        }
 
-
+        private function getStatus()
+        {
+            $status = [
+                '1'
+            ];
+            return $status[array_rand($status)];
+        }
         private function getSet()
         {
             $sets = [
@@ -62,12 +90,19 @@ class WorkoutPlanFactory extends Factory
             ];
             return $raps[array_rand($raps)];
         }
-
         private function getGender()
         {
             $gender = [
                 'Male', 'Female'
             ];
             return $gender[array_rand($gender)];
+        }
+        private function getSubId()
+        {
+            $subscription_id = [
+//                '1'
+                '2'
+            ];
+            return $subscription_id[array_rand($subscription_id)];
         }
 }
