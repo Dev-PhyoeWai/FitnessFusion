@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('ingredient');
             $table->string('type');
+            $table->string('day');
+            $table->string('week');
+            $table->boolean('status')->default(1);
             $table->string('image')->nullable();
             $table->integer('calories');
             $table->foreignId('subscription_id')->constrained()->onDelete('cascade');

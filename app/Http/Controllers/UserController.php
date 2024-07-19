@@ -99,8 +99,8 @@ class UserController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        // $user= Auth::user();
-        $user = User::find($userId);
+         $user= Auth::user();
+//        $user = User::find($userId);
 
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);

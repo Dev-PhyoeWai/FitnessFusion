@@ -63,4 +63,6 @@ class WeightTypeController extends Controller
             ->with('success', 'Weight Type deleted successfully.');
 //        return response()->noContent();
     }
+
+
 }

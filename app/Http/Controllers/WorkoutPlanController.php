@@ -42,8 +42,8 @@ class WorkoutPlanController extends Controller
         if ($request->hasFile('image')) {
             $imageFile = $request->file('image');
             $filename = time() . '.' . $imageFile->getClientOriginalExtension();
-            $imageFile->move(public_path('uploads/images/'), $filename);
-            $imagePath = 'uploads/images/' . $filename; // Save the relative path
+            $imageFile->move(public_path('storage/images/workout/'), $filename);
+            $imagePath = 'storage/images/workout/' . $filename; // Save the relative path
         }
         // Merge image path with the other request data
         $data = $request->all();
@@ -78,8 +78,8 @@ class WorkoutPlanController extends Controller
 
             $imagePath = $request->file('image');
             $filename = time() . '.' . $imagePath->getClientOriginalExtension();
-            $imagePath->move('uploads/images/', $filename);
-            $workoutPlan->image = 'uploads/images/' . $filename;
+            $imagePath->move('storage/images/workout/', $filename);
+            $workoutPlan->image = 'storage/images/workout/' . $filename;
         }
 
         $workoutPlan->update($request->except('image'));

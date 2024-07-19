@@ -16,7 +16,11 @@ class MealPlanFactory extends Factory
             'name' => $this->getName(),
             'ingredient' => $this -> getIngredients(),
             'type' => $this -> getType(),
+            'day' => $this -> getDay(),
+            'week' => $this -> getWeek(),
+            'status' => $this -> getStatus(),
             'calories' => $this -> getCalories(),
+            'subscription_id' => $this -> getSubId(),
 
         ];
     }
@@ -60,10 +64,32 @@ class MealPlanFactory extends Factory
     {
         $types =
             [
-                'Weight Loss',
-                'Weight Gain'
+                'Breakfast',
+
             ];
         return $types[array_rand($types)];
+    }
+    private function getDay()
+    {
+        $day = [
+            'Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7',
+        ];
+        return $day[array_rand($day)];
+    }
+    private function getWeek()
+    {
+        $week = [
+            'Week 1',
+        ];
+        return $week[array_rand($week)];
+    }
+
+    private function getStatus()
+    {
+        $status = [
+            '1'
+        ];
+        return $status[array_rand($status)];
     }
     private function getCalories(){
         $calories =
@@ -72,5 +98,14 @@ class MealPlanFactory extends Factory
             '387 Kcal', '266 Kcal', '200 Kcal', '660 Kcal', '544 Kcal'
         ];
         return $calories[array_rand($calories)];
+    }
+
+    private function getSubId()
+    {
+        $subscription_id = [
+             '1'
+
+        ];
+        return $subscription_id[array_rand($subscription_id)];
     }
 }
