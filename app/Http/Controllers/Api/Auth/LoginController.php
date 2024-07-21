@@ -121,6 +121,8 @@ class LoginController extends ApiBaseController
                             'name' => $workoutPlan->name,
                             'body_part' => $workoutPlan->body_part,
                             'type' => $workoutPlan->type,
+                            'day' => $workoutPlan->day,
+                            'week' => $workoutPlan->week,
                             'set' => $workoutPlan->set,
                             'raps' => $workoutPlan->raps,
                             'gender' => $workoutPlan->gender,
@@ -133,6 +135,8 @@ class LoginController extends ApiBaseController
                             'name' => $mealPlan->name,
                             'ingredient' => $mealPlan->ingredient,
                             'type' => $mealPlan->type,
+                            'day' => $mealPlan->day,
+                            'week' => $mealPlan->week,
                             'calories' => $mealPlan->calories,
                             'image' => $mealPlan->image,
                         ];

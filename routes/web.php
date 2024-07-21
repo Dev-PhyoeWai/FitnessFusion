@@ -57,6 +57,7 @@ Route::resource('activity',ActivityController::class);
 Route::resource('goal',GoalsController::class);
 
 Route::resource('users', UserController::class);
+Route::get('users/{userId}/delete', [UserController::class,'destroy']);
 
 Route::resource('subscriptions', SubscriptionController::class);
 Route::resource('workout_plans', WorkoutPlanController::class);

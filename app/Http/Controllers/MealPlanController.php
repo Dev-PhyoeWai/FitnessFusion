@@ -74,8 +74,8 @@ class MealPlanController extends Controller
 
             $imagePath = $request->file('image');
             $filename = time() . '.' . $imagePath->getClientOriginalExtension();
-            $imagePath->move('uploads/images/meal/', $filename);
-            $mealplan->image = 'uploads/images/meal/' . $filename;
+            $imagePath->move('storage/images/meal/', $filename);
+            $mealplan->image = 'storage/images/meal/' . $filename;
         }
 
         $mealplan->update($request->except('image'));

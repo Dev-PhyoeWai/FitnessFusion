@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -20,8 +21,8 @@ class UserController extends Controller
     }
     public function create()
     {
-        $subscriptions = Subscription::all();
-        return view('users.create', compact('subscriptions'));
+        $roles = Role::pluck('name', 'name')->all();
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -30,14 +31,16 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'roles' => 'required',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        $user->syncRoles($request->roles);
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
@@ -48,43 +51,42 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $subscriptions = Subscription::all();
-        return view('users.edit', compact('user','subscriptions'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRoles = $user->roles->pluck('name', 'name')->all();
+//        $subscriptions = Subscription::all();
+        return view('users.edit', compact(['user','roles','userRoles']));
     }
 
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'age' => 'sometimes|integer',
-            'height' => 'sometimes|integer',
-            'weight' => 'sometimes|integer',
-            'bmi' => 'sometimes|integer',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'subscription_id' => 'sometimes|exists:subscriptions,id',
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'roles' => 'required',
         ]);
 
-         if ($request->hasFile('image')) {
+        $data =([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
 
-             if ($user->image && file_exists(public_path($user->image))) {
-                 unlink(public_path($user->image));
-             }
+        if(!empty($request->password)){
+            $data += [
+                'password' => Hash::make($request->password),
+            ];
+        }
 
-             $imageName = time().'.'.$request->image->extension();
-             $request->image->move(public_path('uploads/profiles'), $imageName);
-             $user->image = 'uploads/profiles/'.$imageName;
-         }
-
-        $user->update($request->except(['password', 'image']));
-        $user->save();
-
+        $user->update($data);
+        $user->syncRoles($request->roles);
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
-    public function destroy(User $user)
+    public function destroy($userId)
     {
-        if ($user->image) {
-            Storage::delete($user->image);
-        }
+//        if ($user->image) {
+//            Storage::delete($user->image);
+//        };
+        $user = User::findOrFail($userId);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
