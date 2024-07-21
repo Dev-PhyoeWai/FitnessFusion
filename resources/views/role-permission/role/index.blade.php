@@ -49,14 +49,14 @@
                                             style="color: green">
                                                 Add / Edit Role Permission
                                             </a>
-                                            <span>  | </span>
+                                            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                             <a href="{{ url('roles/'.$role->id.'/edit') }}"
                                                class="inline-block bg-green-500 text-green-700 py-1 px-3
                                                     rounded-md hover:bg-green-600 transition duration-300"
                                                style="color: darkorange">
                                                 Edit
                                             </a>
-                                            <span>|</span>
+                                            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                             <a href="{{ url('roles/'.$role->id.'/delete') }}"
                                                class="inline-block bg-red-500 text-black py-1 px-3
                                                     rounded-md hover:bg-red-600 transition duration-300"

@@ -31,7 +31,7 @@ class WorkoutPlanFactory extends Factory
                 'Box Jumps','Dumbbell Pullover', 'Squat', 'Row',
                 'Jumping Jack','High kness',
                 'Burpees', 'Bench Press',
-                'Leg Press',
+                    'Leg Press',
 
             ];
             return $names[array_rand($names)];

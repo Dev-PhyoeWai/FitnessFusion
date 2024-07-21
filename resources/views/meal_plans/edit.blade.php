@@ -40,13 +40,13 @@
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Day</label>
-                                <input type="text" name="type" value="{{ $mealPlan->day }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md
+                                <input type="text" name="day" value="{{ $mealPlan->day }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md
                                   shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
                                    sm:text-sm" required>
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Week</label>
-                                <input type="text" name="type" value="{{ $mealPlan->week }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md
+                                <input type="text" name="week" value="{{ $mealPlan->week }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md
                                   shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
                                    sm:text-sm" required>
                             </div>

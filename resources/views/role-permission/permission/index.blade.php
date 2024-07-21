@@ -51,7 +51,7 @@
                                                 rounded-md hover:bg-green-600 transition duration-300" style="color: darkorange">
                                                 Edit
                                             </a>
-                                            |
+                                            <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                             <a href="{{ url('permissions/'.$p->id.'/delete') }}"
                                                class="inline-block bg-red-500 text-black py-1 px-3
                                                 rounded-md hover:bg-red-600 transition duration-300" style="color: red">

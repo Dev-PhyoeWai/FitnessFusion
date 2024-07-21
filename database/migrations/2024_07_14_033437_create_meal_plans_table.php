@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('week');
             $table->boolean('status')->default(1);
             $table->string('image')->nullable();
-            $table->integer('calories');
+            $table->string('calories');
             $table->foreignId('subscription_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
